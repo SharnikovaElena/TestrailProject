@@ -10,10 +10,8 @@ public class LoginPage extends BasePage {
 
     private static final By PASSWORD_INPUT = By.id("password");
     private final By LOGIN_BUTTON = By.id("button_primary");
-    private static final By ERROR_MASSAGE_FOR_EMAIL_FIELD = By.xpath("//div/input[@id='name']/ancestor::div[@class='form-group']/ancestor::form/div[@class='loginpage-message-image loginpage-message ']");
     private static final By ERROR_MASSAGE_FOR_PASSWORD_FIELD = By.xpath("//div/input[@id='password']/ancestor::div[@class='form-group']/ancestor::form/div[@class='display-flex']//div[@class='loginpage-message-image loginpage-message ']");
-    private static final By ERROR_MASSAGE_FOR_INVALID_DATA = By.xpath("//div[@class='error-text']");
-    private static final By ERROR_TEXT = By.xpath("//div[@class='error-text']");
+
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -25,10 +23,15 @@ public class LoginPage extends BasePage {
         return isExit(LOGIN_BUTTON);
     }
 
+    @Step("Get the title of the page")
+    public String getTitlePageValue() {
+        return driver.findElement(LOGIN_BUTTON).getText();
+    }
+
     @Step("Opening the LoginPage")
     public LoginPage open() {
         log.info("Waiting for the LoginPage to open");
-        driver.get(BASE_URL);
+        driver.get(baseUrl);
         return this;
     }
 
@@ -54,13 +57,10 @@ public class LoginPage extends BasePage {
         return driver.findElement(ERROR_MASSAGE_FOR_PASSWORD_FIELD).getText();
     }
 
-    @Step("Error message text in case of incorrect data in the Email and/or Password fields")
-    public String getErrorMassageForInvalidData() {
-        log.info("Waiting for The error message 'Email/Login or Password is incorrect. Please try again.'");
-        return driver.findElement(ERROR_MASSAGE_FOR_INVALID_DATA).getText();
+    @Step("Message text in Alert in case using incorrect data in the Email and/or Password fields, as well as in case of a successful password reset")
+    public String getErrorMassageForAlert() {
+        return driver.findElement(ERROR_MASSAGE_FOR_ALERT).getText();
     }
 
-    public String errorText() {
-      return driver.findElement(ERROR_TEXT).getText();
-    }
+
 }
