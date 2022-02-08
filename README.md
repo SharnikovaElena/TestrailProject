@@ -8,3 +8,14 @@ CheckList LoginPage (https://elsharnikova.testrail.io/index.php?/auth/login)
 6. Check for all error messages.
 7. Checking the possibility of selecting the 'Keep me logged in' me checkbox.
 8. Checking the clickability of a hyperlink 'Forgot your password?'
+
+CheckList ForgotPasswordPage
+
+9.Using correct data in the 'Email'
+10.Using incorrect data in the 'Email'
+11.Checking that the 'Email' field on ForgotPasswordPage is required
+12. Testing the 'Cancel' Button
+
+CheckList DashboardPage
+13. Checking top menu pull-right
+14. 
