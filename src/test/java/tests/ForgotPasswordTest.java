@@ -62,7 +62,7 @@ public class ForgotPasswordTest extends BaseTest {
                 .isPageOpen();
         log.debug("Checking if ForgotPasswordPage is closed when the 'Cancel' button is clicked and redirected to LoginPage");
         AllureUtils.takeScreenshot(driver);
-        Assert.assertEquals(forgotPasswordPage.getTitlePageValue(), "Reset Your Password", "LoginPage is not open");
+        Assert.assertEquals(forgotPasswordPage.getTitlePageValue(), "Log into Your Account", "LoginPage is not open");
         log.info("Completion test resetPasswordCancel");
     }
 }

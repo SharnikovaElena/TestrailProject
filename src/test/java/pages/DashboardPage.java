@@ -16,6 +16,7 @@ public class DashboardPage extends BasePage {
     private static final By EXAMPLE_PROJECT_INPUT = By.xpath("//input[@id='addProjectName']");
     private static final By ADD_EXAMPLE_PROJECT_SUBMIT = By.xpath("//button[@id='addProjectSubmit']");
     private static final By ADD_PROJECT_SUBMIT = By.id("accept");
+    String projectTitle = "//div[@class='table summary summary-auto']//a[text()='%s']";
 
     public DashboardPage(WebDriver driver) {
         super(driver);
@@ -64,4 +65,10 @@ public class DashboardPage extends BasePage {
         return new AdministrationPage(driver);
     }
 
+    public ProjectPage openProject(String projectName){
+        driver.findElement(By.xpath(String.format(projectTitle, projectName))).click();
+        return  new ProjectPage(driver);
+    }
+
 }
+

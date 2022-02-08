@@ -20,6 +20,7 @@ public class DashboardTest extends BaseTest {
                 .open()
                 .login(userEmail, userPassword)
                 .isPageOpen();
+        AllureUtils.takeScreenshot(driver);
         log.debug("Checking that the DashboardPage is open");
         log.info("Completion test isDashboardPageOpened");
     }
@@ -80,7 +81,7 @@ public class DashboardTest extends BaseTest {
         administrationPage
                 .open()
                 .сlickOnTheNavigationItem(AdministrationPage.NAVIGATION_PROJECT);
-        administrationPage.deleteProjectTest("impala");
+        administrationPage.deleteProjectTest("Graduation project");
         confirmationModalPage.approveToDeleteProject();
         AllureUtils.takeScreenshot(driver);
         Assert.assertEquals(administrationPage.popUpResultMessage(), "Successfully deleted the project.", "Failed to delete project");

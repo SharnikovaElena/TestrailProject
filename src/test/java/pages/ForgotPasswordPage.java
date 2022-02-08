@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.AllureUtils;
 
+
 @Log4j2
 public class ForgotPasswordPage extends BasePage {
 
@@ -24,7 +25,6 @@ public class ForgotPasswordPage extends BasePage {
         log.info("Waiting for the ForgotPasswordPage to open");
         driver.get(baseUrl);
         driver.findElement(LINK_FORGOT_PASSWORD).click();
-        AllureUtils.takeScreenshot(driver);
         log.info("The ForgotPasswordPage is open");
         return this;
     }
@@ -49,7 +49,7 @@ public class ForgotPasswordPage extends BasePage {
     }
 
 
-    @Step ("Filled in the 'E-mail' field with the invalid data and click the 'Retrieve password' button.")
+    @Step("Filled in the 'E-mail' field with the invalid data and click the 'Retrieve password' button.")
     public ForgotPasswordPage resetPasswordInvalidEmail(String email) {
         log.info("Enter 'ev.sharnikova@gmail.com' in the Email field");
         driver.findElement(EMAIL_INPUT).sendKeys(email);
