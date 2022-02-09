@@ -65,9 +65,9 @@ public class DashboardPage extends BasePage {
         return new AdministrationPage(driver);
     }
 
-    public ProjectPage openProject(String projectName){
+    public OverviewProjectPage openProject(String projectName){
         driver.findElement(By.xpath(String.format(projectTitle, projectName))).click();
-        return  new ProjectPage(driver);
+        return  new OverviewProjectPage(driver);
     }
 
 }

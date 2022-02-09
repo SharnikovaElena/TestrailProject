@@ -21,9 +21,11 @@ public class BaseTest {
     ForgotPasswordPage forgotPasswordPage;
     MysettingsPage mysettingsPage;
     DashboardPage dashboardPage;
-    ProjectPage projectPage;
     AdministrationPage administrationPage;
     СonfirmationModalPage confirmationModalPage;
+    OverviewProjectPage overviewProjectPage;
+    TestCasesProjectPage testCasesProjectPage;
+    TestRunsProjectPage testRunsProjectPage;
     protected String userEmail = "sharnikovaev@gmail.com";
     protected String userPassword = "Lenor4ik";
 
@@ -38,9 +40,11 @@ public class BaseTest {
         forgotPasswordPage = new ForgotPasswordPage(driver);
         mysettingsPage = new MysettingsPage(driver);
         dashboardPage = new DashboardPage(driver);
-        projectPage = new ProjectPage(driver);
         administrationPage = new AdministrationPage(driver);
         confirmationModalPage = new СonfirmationModalPage(driver);
+        overviewProjectPage = new OverviewProjectPage(driver);
+        testCasesProjectPage = new TestCasesProjectPage(driver);
+        testRunsProjectPage = new TestRunsProjectPage(driver);
 
 //        BasePage.baseUrl = System.getenv().getOrDefault("TESTRAIL_URL", PropertyReader.getProperty("testrail.url"));
 //        userEmail = System.getenv().getOrDefault("TESTRAIL_EMAIL", PropertyReader.getProperty("testrail.email"));

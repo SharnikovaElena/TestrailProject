@@ -51,20 +51,32 @@ public class DashboardTest extends BaseTest {
     }
 
 
-    @Test(description = "Add Example Project", enabled= false)
+    @Test(description = "Add Example Project", enabled = false)
     public void addExampleProjectTest() throws InterruptedException {
         log.info("Run test addExampleProjectTest. Open the DashboardPage");
         isDashboardPageOpened();
         dashboardPage.addExampleProject(faker.animal().name());
+        boolean isExampleProjectCreate = overviewProjectPage.isPageOpen();
         AllureUtils.takeScreenshot(driver);
         log.debug("Сheck that the Example Project has been created");
-        Assert.assertEquals(projectPage.getTitlePageValue(), "Milestones", "ProjectPage is not open");
+        Assert.assertTrue(isExampleProjectCreate, "ExampleProject is not created");
         log.info("Completion addExampleProjectTest");
     }
 
 
     @Test(description = "Creating a new project on a DashboardPage")
     public void addNewProjectTest() throws InterruptedException {
+        log.info("Run test addNewProjectTest. Open the DashboardPage");
+        isDashboardPageOpened();
+        dashboardPage.addNewProject(faker.funnyName().name(), faker.book().publisher());
+        AllureUtils.takeScreenshot(driver);
+        log.debug("Сheck that the New Project has been created");
+        Assert.assertEquals(administrationPage.popUpResultMessage(), "Successfully added the new project.", "Failed to add the new project.");
+        log.info("Completion test addNewProjectTest");
+    }
+
+    @Test(description = "Creation of a working project for a graduation project")
+    public void addTestProject() throws InterruptedException {
         log.info("Run test addNewProjectTest. Open the DashboardPage");
         isDashboardPageOpened();
         dashboardPage.addNewProject("Graduation project", faker.book().publisher());
@@ -74,17 +86,4 @@ public class DashboardTest extends BaseTest {
         log.info("Completion test addNewProjectTest");
     }
 
-    @Test(description = "Deleting a project")
-    public void deleteProjectTest() throws InterruptedException {
-        log.info("Run test deleteProjectTest. Open the DashboardPage");
-        isDashboardPageOpened();
-        administrationPage
-                .open()
-                .сlickOnTheNavigationItem(AdministrationPage.NAVIGATION_PROJECT);
-        administrationPage.deleteProjectTest("Graduation project");
-        confirmationModalPage.approveToDeleteProject();
-        AllureUtils.takeScreenshot(driver);
-        Assert.assertEquals(administrationPage.popUpResultMessage(), "Successfully deleted the project.", "Failed to delete project");
-        log.info("Completion test deleteProjectTest");
-    }
 }

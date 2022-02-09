@@ -2,7 +2,9 @@ package tests;
 
 import lombok.extern.log4j.Log4j2;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
+import pages.AdministrationPage;
 import utils.AllureUtils;
 
 
@@ -16,11 +18,28 @@ public class ProjectTest extends BaseTest {
                 .open()
                 .login(userEmail, userPassword);
         dashboardPage.openProject("Graduation project");
-        projectPage.isPageOpen();
+       boolean isOverviewProjectOpened = overviewProjectPage.isPageOpen();
         AllureUtils.takeScreenshot(driver);
         log.debug("Checking that the ProjectPage is open");
-        Assert.assertEquals(projectPage.getTitlePageValue(), "Milestones", "ProjectPage is not open");
+        Assert.assertTrue(isOverviewProjectOpened, "ProjectPage is not open");
         log.info("Completion test projectOpenTest");
 
+    }
+
+    @AfterTest
+    @Test(description = "Deleting a project")
+    public void deleteProjectTest() {
+        log.info("Run test deleteProjectTest. Open the DashboardPage");
+         loginPage
+                .open()
+                .login(userEmail, userPassword);
+        administrationPage
+                .open()
+                .сlickOnTheNavigationItem(AdministrationPage.NAVIGATION_PROJECT);
+        administrationPage.deleteProjectTest("Graduation project");
+        confirmationModalPage.approveToDeleteProject();
+        AllureUtils.takeScreenshot(driver);
+        Assert.assertEquals(administrationPage.popUpResultMessage(), "Successfully deleted the project.", "Failed to delete project");
+        log.info("Completion test deleteProjectTest");
     }
 }
