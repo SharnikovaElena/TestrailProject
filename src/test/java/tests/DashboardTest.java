@@ -4,7 +4,6 @@ import com.github.javafaker.Faker;
 import lombok.extern.log4j.Log4j2;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.AdministrationPage;
 import utils.AllureUtils;
 
 
@@ -13,7 +12,8 @@ public class DashboardTest extends BaseTest {
 
     static Faker faker = new Faker();
 
-    @Test(description = "Opening the DashboardPage")
+
+    @Test(description = "Opening the DashboardPage", priority = 1)
     public void isDashboardPageOpened() throws InterruptedException {
         log.info("Run test isDashboardPageOpened");
         boolean isDashboardPageOpened = loginPage
@@ -51,7 +51,7 @@ public class DashboardTest extends BaseTest {
     }
 
 
-    @Test(description = "Add Example Project", enabled = false)
+    @Test(description = "Add Example Project", priority = 2) //enabled = false
     public void addExampleProjectTest() throws InterruptedException {
         log.info("Run test addExampleProjectTest. Open the DashboardPage");
         isDashboardPageOpened();
@@ -64,7 +64,7 @@ public class DashboardTest extends BaseTest {
     }
 
 
-    @Test(description = "Creating a new project on a DashboardPage")
+    @Test(description = "Creating a new project on a DashboardPage", priority = 3)
     public void addNewProjectTest() throws InterruptedException {
         log.info("Run test addNewProjectTest. Open the DashboardPage");
         isDashboardPageOpened();
@@ -75,7 +75,7 @@ public class DashboardTest extends BaseTest {
         log.info("Completion test addNewProjectTest");
     }
 
-    @Test(description = "Creation of a working project for a graduation project")
+    @Test(description = "Creation of a working project for a graduation project", priority = 4)
     public void addTestProject() throws InterruptedException {
         log.info("Run test addNewProjectTest. Open the DashboardPage");
         isDashboardPageOpened();

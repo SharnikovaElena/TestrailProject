@@ -26,7 +26,7 @@ public class ProjectTest extends BaseTest {
 
     }
 
-    @AfterTest
+
     @Test(description = "Deleting a project")
     public void deleteProjectTest() {
         log.info("Run test deleteProjectTest. Open the DashboardPage");
