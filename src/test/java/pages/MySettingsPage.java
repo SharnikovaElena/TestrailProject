@@ -4,9 +4,9 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 
 
-public class MysettingsPage extends BasePage{
+public class MySettingsPage extends BasePage{
 
-    public MysettingsPage(WebDriver driver) {
+    public MySettingsPage(WebDriver driver) {
         super(driver);
     }
 
