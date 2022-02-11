@@ -14,6 +14,7 @@ public abstract class BasePage {
     protected static final By ERROR_MASSAGE_FOR_ALERT = By.xpath("//div[@class='error-text']");
     protected static final By CONTENT_HEADER_TITLE = By.xpath("//div[contains(@class, 'content-header-title')]");
     protected static final By ADMINISTRATION_TITLE = By.id("navigation-admin");
+    protected static final By ADD_PROJECT_SUBMIT = By.id("accept");
 
     public String baseUrl = "https://sharnikova.testrail.io/";
 
