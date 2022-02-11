@@ -8,7 +8,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import pages.*;
-import utils.PropertyReader;
 
 import java.util.concurrent.TimeUnit;
 
@@ -19,26 +18,29 @@ public class BaseTest {
     WebDriver driver;
     LoginPage loginPage;
     ForgotPasswordPage forgotPasswordPage;
-    MysettingsPage mysettingsPage;
+    MySettingsPage mysettingsPage;
     DashboardPage dashboardPage;
     AdministrationPage administrationPage;
     СonfirmationModalPage confirmationModalPage;
     OverviewProjectPage overviewProjectPage;
     TestCasesProjectPage testCasesProjectPage;
     TestRunsProjectPage testRunsProjectPage;
+
     protected String userEmail = "sharnikovaev@gmail.com";
     protected String userPassword = "Lenor4ik";
 
 
     @BeforeMethod(description = "Setup and start browser")
     public void setup(ITestContext context) {
+
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
+
         loginPage = new LoginPage(driver);
         forgotPasswordPage = new ForgotPasswordPage(driver);
-        mysettingsPage = new MysettingsPage(driver);
+        mysettingsPage = new MySettingsPage(driver);
         dashboardPage = new DashboardPage(driver);
         administrationPage = new AdministrationPage(driver);
         confirmationModalPage = new СonfirmationModalPage(driver);

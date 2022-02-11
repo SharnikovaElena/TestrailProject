@@ -32,12 +32,14 @@ CheckList AdministrationPage
 
 
 CheckList OverviewProjectPage
-19. Checking the possibility of adding a Test Case. 
-20. Checking the ability to view all test cases of the project.
-21. Checking creation Test Run.
-22. Checking the ability to view all Test Runs of the project.
-23. Checking creation Milestones.
-24. Checking the ability to view all Milestones of the project.
+
+19. Checking the ability to edit project data using the Edit button.
+20. Checking the possibility of adding a Test Case. 
+21. Checking the ability to view all test cases of the project.
+22. Checking creation Test Run.
+23. Checking the ability to view all Test Runs of the project.
+24. Checking creation Milestones.
+25. Checking the ability to view all Milestones of the project.
 
 
 CheckList TestCasesProjectPage

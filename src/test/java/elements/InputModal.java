@@ -8,20 +8,21 @@ import org.openqa.selenium.WebDriver;
 @Log4j2
 public class InputModal {
 
-//    WebDriver driver;
-//    String label;
-//
-//    String inputLocator = "/label[contains(text(), 'Name')]/ancestor::div/input[@type='text'][1]";
-//
-//    public InputModal(WebDriver driver, String label) {
-//        this.driver = driver;
-//        this.label = label;
-//    }
-//
-//    @Step("Filling in the required fields to create a Project")
-//    public void write(String text) {
-//        log.info("Writing text in the input field by the specified name when creating a Project");
-//        driver.findElement(By.xpath(String.format(inputLocator, this.label))).sendKeys(text);
-//    }
+    WebDriver driver;
+    String nameInput;
+
+
+    String inputLocator = "//input[@name='%s'][contains(@class, 'form-control form-control-full form-fields')]";
+
+    public InputModal(WebDriver driver, String nameInput) {
+        this.driver = driver;
+        this.nameInput = nameInput;
+    }
+
+    @Step("Filling in the required fields to create a Project")
+    public void write(String text) {
+        log.info("Writing text in the input field by the specified name when creating a Test Case");
+        driver.findElement(By.xpath(String.format(inputLocator, this.nameInput))).sendKeys(text);
+    }
 
 }
