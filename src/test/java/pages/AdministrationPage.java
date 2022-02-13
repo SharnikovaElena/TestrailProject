@@ -7,10 +7,11 @@ import org.testng.annotations.AfterTest;
 
 public class AdministrationPage extends BasePage {
 
-    private static final By MESSAGE_TO_ADMIN = By.xpath("//p[text()='Manage projects, users and global settings.']");
+
     String deleteProject = "//a[contains(text(),'%s')]/ancestor::tr//div[@class='icon-small-delete']";
     private static final By POP_UP_RESULT_MESSAGE = By.xpath("//div[@class ='message message-success']");
     public static final By NAVIGATION_PROJECT = By.id("navigation-sub-projects");
+    protected static final By MESSAGE_TO_ADMIN = By.xpath("//p[text()='Manage projects, users and global settings.']");
     protected static final By NAVIGATION_OVERWIEW = By.id("navigation-sub-overview");
     protected static final By NAVIGATION_USERS_ROLES = By.id("navigation-sub-users");
     protected static final By NAVIGATION_CUSTOMIZATION = By.id("navigation-sub-customization");
@@ -29,10 +30,10 @@ public class AdministrationPage extends BasePage {
         return isExit(MESSAGE_TO_ADMIN);
     }
 
-    @Step("Get the title of the page")
-    public String getTitlePageValue() {
-        return driver.findElement(MESSAGE_TO_ADMIN).getText();
-    }
+//    @Step("Get the title of the page")
+//    public String getMessageToAdmin() {
+//        return driver.findElement(MESSAGE_TO_ADMIN).getText();
+//    }
 
     @Step("Open sidebar Administration menu")
     public AdministrationPage open() {
@@ -42,8 +43,8 @@ public class AdministrationPage extends BasePage {
 
 
     @Step("Сlick on the navigation elements in the Administration menu")
-    public void сlickOnTheNavigationItem(By locator) {
-        driver.findElement(locator).click();
+    public void clickOnTheNavigationItem() {
+        driver.findElement(NAVIGATION_PROJECT).click();
     }
 
 

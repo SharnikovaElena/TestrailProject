@@ -12,11 +12,11 @@ public class MySettingsPage extends BasePage{
 
     @Override
     public boolean isPageOpen() throws InterruptedException {
-        return isExit(CONTENT_HEADER_TITLE);
+        return isExit(TITLE_THE_SECTION_ON_THE_HEADER);
     }
 
     @Step("Get the title of the page")
     public String getTitlePageValue() {
-        return driver.findElement(CONTENT_HEADER_TITLE).getText();
+        return driver.findElement(TITLE_THE_SECTION_ON_THE_HEADER).getText();
     }
 }
