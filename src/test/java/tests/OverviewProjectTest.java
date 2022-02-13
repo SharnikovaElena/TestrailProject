@@ -25,5 +25,4 @@ public class OverviewProjectTest extends BaseTest {
         log.info("Completion openOverviewTabTest");
     }
 
-
 }

@@ -16,6 +16,7 @@ public class DashboardPage extends BasePage {
     private static final By EXAMPLE_PROJECT_INPUT = By.xpath("//input[@id='addProjectName']");
     private static final By ADD_EXAMPLE_PROJECT_SUBMIT = By.xpath("//button[@id='addProjectSubmit']");
 
+
     String projectTitle = "//div[@class='table summary summary-auto']//a[text()='%s']";
 
     public DashboardPage(WebDriver driver) {
@@ -24,12 +25,12 @@ public class DashboardPage extends BasePage {
 
     @Override
     public boolean isPageOpen() throws InterruptedException {
-        return isExit(TITLE_THE_SECTION_ON_THE_HEADER);
+        return isExit(By.xpath("//div[@id='header']//li/a[contains(text(), 'Dashboard')])"));
     }
 
     @Step("Get the title of the page")
     public String getTitlePageValue() {
-        return driver.findElement(TITLE_THE_SECTION_ON_THE_HEADER).getText();
+        return driver.findElement(TITLE_THE_OPENED_PAGE).getText();
     }
 
     @Step("Go to MySettingsPage")

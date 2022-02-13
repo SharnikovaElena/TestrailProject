@@ -44,7 +44,7 @@ public class ProjectTest extends BaseTest {
     }
 
 
-    @Test(description = "Deleting a project")
+    @Test(description = "Deleting a project", enabled = false)
     public void deleteProjectTest() {
         log.info("Run test deleteProjectTest. Open the DashboardPage");
          loginPage

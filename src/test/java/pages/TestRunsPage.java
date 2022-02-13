@@ -2,8 +2,8 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 
-public class TestRunsProjectPage extends BasePage{
-    public TestRunsProjectPage(WebDriver driver) {
+public class TestRunsPage extends BasePage{
+    public TestRunsPage(WebDriver driver) {
         super(driver);
     }
 

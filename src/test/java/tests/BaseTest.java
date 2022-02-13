@@ -24,8 +24,8 @@ public abstract class BaseTest {
     AdministrationPage administrationPage;
     СonfirmationModalPage confirmationModalPage;
     OverviewProjectPage overviewProjectPage;
-    TestCasesProjectPage testCasesProjectPage;
-    TestRunsProjectPage testRunsProjectPage;
+    TestCasesPage testCasesProjectPage;
+    TestRunsPage testRunsProjectPage;
     TestCaseDetailsPage testCaseDetailsPage;
     ProjectPage projectPage;
 
@@ -48,8 +48,8 @@ public abstract class BaseTest {
         administrationPage = new AdministrationPage(driver);
         confirmationModalPage = new СonfirmationModalPage(driver);
         overviewProjectPage = new OverviewProjectPage(driver);
-        testCasesProjectPage = new TestCasesProjectPage(driver);
-        testRunsProjectPage = new TestRunsProjectPage(driver);
+        testCasesProjectPage = new TestCasesPage(driver);
+        testRunsProjectPage = new TestRunsPage(driver);
         testCaseDetailsPage = new TestCaseDetailsPage(driver);
         projectPage = new ProjectPage(driver);
 

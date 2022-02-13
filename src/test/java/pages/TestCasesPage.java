@@ -10,13 +10,13 @@ import org.openqa.selenium.WebDriver;
 
 
 
-public class TestCasesProjectPage extends BasePage {
+public class TestCasesPage extends BasePage {
 
     String checkboxForProjectSelection = "//span[contains(text(), '%s')]/ancestor::tr//input";
     String testCaseDeletionConfirmation = "//div[@id='casesDeletionDialog']//a[contains(text(), 'Mark as Deleted')]";
     private final static By DELETE_TEST_CASE_BUTTON = By.xpath("//a[@id='deleteCases']/span[text()='Delete']");
 
-    public TestCasesProjectPage(WebDriver driver) {
+    public TestCasesPage(WebDriver driver) {
         super(driver);
     }
 
@@ -54,11 +54,11 @@ public class TestCasesProjectPage extends BasePage {
 
 
     @Step("")
-    public TestCasesProjectPage deleteTestCase(String nameTestCase) {
+    public TestCasesPage deleteTestCase(String nameTestCase) {
         driver.findElement(By.xpath(String.format(checkboxForProjectSelection, nameTestCase))).click();
         driver.findElement(DELETE_TEST_CASE_BUTTON).click();
         driver.findElement(By.xpath(testCaseDeletionConfirmation)).click();
-        return new TestCasesProjectPage(driver);
+        return new TestCasesPage(driver);
     }
 
     // удалить все тест кейсы

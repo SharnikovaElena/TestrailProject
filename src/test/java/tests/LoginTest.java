@@ -58,7 +58,7 @@ public class LoginTest extends BaseTest {
                 .isPageOpen();
         log.debug("Checking that the DashboardPage is open");
         AllureUtils.takeScreenshot(driver);
-        Assert.assertEquals(dashboardPage.getTitlePageValue(), "Dashboard", "DashboardPage is not open");
+        Assert.assertEquals(dashboardPage.getTitlePageValue(), "All Projects", "DashboardPage is not open");
         log.info("Completion test login");
     }
 }

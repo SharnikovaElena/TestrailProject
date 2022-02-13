@@ -13,7 +13,6 @@ public abstract class BasePage {
     protected static final By ERROR_MASSAGE_FOR_EMAIL_FIELD = By.xpath("//div[contains(@class, 'loginpage-message-image')]");
     protected static final By ERROR_MASSAGE_FOR_ALERT = By.xpath("//div[@class='error-text']");
     protected static final By TITLE_THE_OPENED_PAGE = By.xpath("//div[contains(@class, 'content-header-title')]");
-    protected static final By TITLE_THE_SECTION_ON_THE_HEADER = By.id("//div[@id='header']//li/a[contains(text(), '%s')]");
     protected static final By ADMINISTRATION_TITLE = By.id("navigation-admin");
     protected static final By ADD_PROJECT_SUBMIT = By.id("accept");
     String titleTheSectionOnTheHeader = "//div[@id='header']//li/a[contains(text(), '%s')]";
