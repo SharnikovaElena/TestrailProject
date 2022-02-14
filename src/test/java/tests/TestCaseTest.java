@@ -24,7 +24,7 @@ public class TestCaseTest extends BaseTest {
     }
 
 
-    @Test (description = "Creating a new Test Case in a project.")
+    @Test(description = "Creating a new Test Case in a project.")
     public void createNewTestCase() {
         log.info("Run createNewTestCase. Open the DashboardPage");
         log.info("Start BeforeMethod: login to account, open the DashboardPage");
@@ -60,10 +60,9 @@ public class TestCaseTest extends BaseTest {
                 "https://jira.elsharnikova.com/",
                 "None",
                 "We go to the TestRail website, create a test project called 'Graduation project'",
-                "\n" +
-                        "1. On the right sidebar, click on the Add button in the Test Cases section.\n" +
-                        "2. Fill in all the fields with the necessary information.\n" +
-                        "3. Click on the 'Add Test Case' button",
+                "On the right sidebar, click on the Add button in the Test Cases section.\n" +
+                        "Fill in all the fields with the necessary information.\n" +
+                        "Click on the 'Add Test Case' button",
                 "We check that the test case has been created and the content of all fields corresponds to the information that was entered when creating the project");
         overviewProjectPage.addTestCases()
                 .createNewTestCase(testCase);
@@ -76,9 +75,9 @@ public class TestCaseTest extends BaseTest {
         Assert.assertEquals(testCaseDetailsPage.getContainedTextInTheField("References"), "References\n" + testCase.getReferences(), "References does not match");
         Assert.assertEquals(testCaseDetailsPage.getContainedTextInTheField("Automation Type"), "Automation Type\n" + testCase.getAutomationType(), "Automation Type does not match");
         Assert.assertEquals(testCaseDetailsPage.getContainedTextInTheField("Estimate"), "Estimate\n" + testCase.getEstimate(), "Estimate does not match");
-//        Assert.assertEquals(testCaseDetailsPage.getContainedTextInThePreconditionsField(), testCase.getPreconditions(), "Preconditions does not match");
-//        Assert.assertEquals(testCaseDetailsPage.getContainedTextInTheExpectedResultField(), testCase.getExpectedResult(), "Expected Result does not match");
-//        Assert.assertEquals(testCaseDetailsPage.getContainedTextInTheStepsField(), testCase.getSteps(), "Steps does not match");
+        Assert.assertEquals(testCaseDetailsPage.getContainedTextInThePreconditionsField(), testCase.getPreconditions(), "Preconditions does not match");
+        Assert.assertEquals(testCaseDetailsPage.getContainedTextInTheExpectedResultField(), testCase.getExpectedResult(), "Expected Result does not match");
+        Assert.assertEquals(testCaseDetailsPage.getContainedTextInTheStepsField(), testCase.getSteps(), "Steps does not match");
     }
 
     @Test(description = "Deleting Test Case by its name")

@@ -10,9 +10,8 @@ public class TestCaseDetailsPage extends BasePage {
     private static final By MESSAGE_TO_ADMIN = By.xpath("//div[@class='sidebar-inner']/p");
     String projectTitleLocator = "//span[contains(text(), '%s')]";
     String fieldLocator = "//label[text()='%s']/ancestor::td";
-    String textInThePreconditionsFieldLocator = "//*[@id='content-inner']/div[6]/div/p";
-    String textInTheExpectedResultFieldLocator = "//*[@id='content-inner']/div[10]/div/p";
-    String textInTheStepsFieldLocator = "//*[@id='content-inner']/div[8]/div//ol";
+
+
     private String fieldName;
 
     public TestCaseDetailsPage(WebDriver driver) {
@@ -39,15 +38,15 @@ public class TestCaseDetailsPage extends BasePage {
     }
 
     public String getContainedTextInThePreconditionsField(){
-        return driver.findElement(By.xpath(textInThePreconditionsFieldLocator)).getText();
+        return driver.findElement(By.xpath("(//div[@class='markdown'])[1]")).getAttribute("innerText");
     }
 
     public String getContainedTextInTheExpectedResultField(){
-        return driver.findElement(By.xpath(textInTheExpectedResultFieldLocator)).getText();
+        return driver.findElement(By.xpath("(//div[@class='markdown'])[3]")).getAttribute("innerText");
     }
 
     public String getContainedTextInTheStepsField(){
-        return driver.findElement(By.xpath(textInTheStepsFieldLocator)).getText();
+        return driver.findElement(By.xpath("(//div[@class='markdown'])[2]")).getAttribute("innerText");
     }
 
 }
