@@ -2,29 +2,19 @@ package adapters;
 
 import models.ResponseStatusNegative;
 import models.ResponseStatusPositive;
-import models.TestCase;
+import models.TestCaseForApi;
 
 public class CaseAdapter extends BaseAdapter{
 
-        public ResponseStatusNegative postCreateTestCaseNegative(TestCase testCase, int statusCode) {
-        String response = super.post(gson.toJson(testCase, TestCase.class), statusCode, "add_case/2767");
+        public ResponseStatusNegative postCreateTestCaseNegative(TestCaseForApi testCaseForApi, int statusCode) {
+        String response = super.post(gson.toJson(testCaseForApi, TestCaseForApi.class), statusCode, "add_case/2767");
         return gson.fromJson(response, ResponseStatusNegative.class);
     }
 
-    public ResponseStatusPositive postCreateTestCasePositive(TestCase testCase, int statusCode) {
-        String response = super.post(gson.toJson(testCase, TestCase.class), statusCode, "add_case/2767");
+    public ResponseStatusPositive postCreateTestCasePositive(TestCaseForApi testCaseForApi, int statusCode) {
+        String response = super.post(gson.toJson(testCaseForApi, TestCaseForApi.class), statusCode, "add_case/2767");
         return gson.fromJson(response, ResponseStatusPositive.class);
     }
 }
-
-
-//
-//    public ResponseStatusNegative getProjectNegative (int statusCode, String codeProject){
-//        return gson.fromJson(get(statusCode,"project/" + codeProject), ResponseStatusNegative.class);
-//    }
-//
-//    public ResponseStatusPositive getProjectPositive (int statusCode, String codeProject){
-//        return gson.fromJson(get(statusCode,"project/" + codeProject), ResponseStatusPositive.class);
-//    }
 
 

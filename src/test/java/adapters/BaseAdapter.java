@@ -32,7 +32,7 @@ public class BaseAdapter {
          given().
                 log().all()
                 .header("Accept" , "application/json")
-                .header("Authorization", "c2hhcm5pa292YWV2QGdtYWlsLmNvbTpMZW5vcjRpaw")
+                .header("Authorization", "Basic c2hhcm5pa292YWV2QGdtYWlsLmNvbTpMZW5vcjRpaw==")
                 .header("Content-Type", "application/json")
                 .header("_token", "O8l/91VWAh1HqHztE4qK")
          .when()

@@ -6,6 +6,5 @@ import lombok.Data;
 @Data
 @Builder
 public class ResponseStatusPositive {
-    boolean status;
-    Result result;
+   Result result;
 }

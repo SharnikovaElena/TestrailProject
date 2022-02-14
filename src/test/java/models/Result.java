@@ -11,7 +11,6 @@ public class Result {
     String estimate;
     int id;
     int priority_id;
-    int milestone_id;
     String refs;
     int section_id;
     int suite_id;
