@@ -5,7 +5,9 @@ import lombok.extern.log4j.Log4j2;
 import models.TestCase;
 import models.TestCaseFactory;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.DashboardPage;
 import utils.AllureUtils;
 
 @Log4j2
@@ -13,12 +15,20 @@ public class TestCaseTest extends BaseTest {
 
     static Faker faker = new Faker();
 
-    @Test
-    public void createNewTestCase() {
-        log.info("Run createNewTestCase. Open the DashboardPage");
+    @BeforeMethod(description = "Login to account, open the DashboardPage")
+    public DashboardPage loginToAccount() {
         loginPage
                 .open()
                 .login(userEmail, userPassword);
+        return new DashboardPage(driver);
+    }
+
+
+    @Test (description = "Creating a new Test Case in a project.")
+    public void createNewTestCase() {
+        log.info("Run createNewTestCase. Open the DashboardPage");
+        log.info("Start BeforeMethod: login to account, open the DashboardPage");
+
         log.info("Click on the name of the project on DashboardPage");
         dashboardPage.openProject("Graduation project");
 
@@ -29,15 +39,14 @@ public class TestCaseTest extends BaseTest {
         AllureUtils.takeScreenshot(driver);
         AllureUtils.takeScreenshot(driver);
         Assert.assertEquals(administrationPage.popUpResultMessage(), "Successfully added the new test case. Add another", "Test case not created");
-        log.error("New Test Case creation completed");
+        log.error("Completion test createNewTestCase");
     }
 
     @Test
     public void createTrainingTestCase() {
-        log.info("Run createNewTestCase. Open the DashboardPage");
-        loginPage
-                .open()
-                .login(userEmail, userPassword);
+        log.info("Run createTrainingTestCase. Open the DashboardPage");
+        log.info("Start BeforeMethod: login to account, open the DashboardPage");
+
         log.info("Click on the name of the project on DashboardPage");
         dashboardPage.openProject("Graduation project");
 
@@ -75,9 +84,8 @@ public class TestCaseTest extends BaseTest {
     @Test(description = "Deleting Test Case by its name")
     public void deleteTestCaseTest() {
         log.info("Run createNewTestCase. Open the DashboardPage");
-        loginPage
-                .open()
-                .login(userEmail, userPassword);
+        log.info("Start BeforeMethod: login to account, open the DashboardPage");
+
         log.info("Click on the name of the project on DashboardPage");
         dashboardPage.openProject("Graduation project");
         projectPage.selectingSectionOnTheProjectPage("Test Cases");

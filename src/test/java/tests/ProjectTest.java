@@ -4,8 +4,10 @@ import com.github.javafaker.Faker;
 import lombok.extern.log4j.Log4j2;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.AdministrationPage;
+import pages.DashboardPage;
 import utils.AllureUtils;
 
 
@@ -14,12 +16,21 @@ public class ProjectTest extends BaseTest {
 
     static Faker faker = new Faker();
 
-    @Test(description = "From the DashboardPage go to the project page")
-    public void openProjectTest() throws InterruptedException {
-        log.info("Run test projectOpenTest. Open the DashboardPage");
+
+    @BeforeMethod (description = "Login to account, open the DashboardPage")
+    public DashboardPage loginToAccount() {
         loginPage
                 .open()
                 .login(userEmail, userPassword);
+        return new DashboardPage(driver);
+    }
+
+
+    @Test(description = "From the DashboardPage go to the project page")
+    public void openProjectTest() throws InterruptedException {
+        log.info("Run test projectOpenTest. Open the DashboardPage");
+        log.info("Start BeforeMethod: login to account, open the DashboardPage");
+
         dashboardPage.openProject("Graduation project");
         boolean isProjectOpened = projectPage.isPageOpen();
         AllureUtils.takeScreenshot(driver);
@@ -28,12 +39,13 @@ public class ProjectTest extends BaseTest {
         log.info("Completion test projectOpenTest");
     }
 
+
+    //перенести в создание проекта
     @Test(description = "Checking the ability to edit project data")
     public void editProjectTest() throws InterruptedException {
-        log.info("editProjectTest. Open the DashboardPage");
-        loginPage
-                .open()
-                .login(userEmail, userPassword);
+        log.info("Run test editProjectTest. Open the DashboardPage");
+        log.info("Start BeforeMethod: login to account, open the DashboardPage");
+
         log.info("Click on the name of the project on DashboardPage");
         dashboardPage.openProject("Graduation project");
         log.info("Click on the Edit button and make changes to the project");
@@ -43,13 +55,12 @@ public class ProjectTest extends BaseTest {
         log.info("Completion editProjectTest");
     }
 
-
+// перенести в создание-редактироыание и удаление проекта
     @Test(description = "Deleting a project", enabled = false)
     public void deleteProjectTest() {
         log.info("Run test deleteProjectTest. Open the DashboardPage");
-         loginPage
-                .open()
-                .login(userEmail, userPassword);
+        log.info("Start BeforeMethod: login to account, open the DashboardPage");
+
         administrationPage
                 .open()
                 .clickOnTheNavigationItem();

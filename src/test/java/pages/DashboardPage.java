@@ -16,8 +16,8 @@ public class DashboardPage extends BasePage {
     private static final By EXAMPLE_PROJECT_INPUT = By.xpath("//input[@id='addProjectName']");
     private static final By ADD_EXAMPLE_PROJECT_SUBMIT = By.xpath("//button[@id='addProjectSubmit']");
 
-
     String projectTitle = "//div[@class='table summary summary-auto']//a[text()='%s']";
+
 
     public DashboardPage(WebDriver driver) {
         super(driver);
