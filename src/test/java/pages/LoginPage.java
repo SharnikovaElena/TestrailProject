@@ -62,5 +62,4 @@ public class LoginPage extends BasePage {
         return driver.findElement(ERROR_MASSAGE_FOR_ALERT).getText();
     }
 
-
 }

@@ -8,12 +8,13 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import pages.*;
+import utils.PropertyReader;
 
 import java.util.concurrent.TimeUnit;
 
 
 @Listeners(TestListener.class)
-public class BaseTest {
+public abstract class BaseTest {
 
     WebDriver driver;
     LoginPage loginPage;
@@ -23,11 +24,13 @@ public class BaseTest {
     AdministrationPage administrationPage;
     СonfirmationModalPage confirmationModalPage;
     OverviewProjectPage overviewProjectPage;
-    TestCasesProjectPage testCasesProjectPage;
-    TestRunsProjectPage testRunsProjectPage;
+    TestCasesPage testCasesProjectPage;
+    TestRunsPage testRunsProjectPage;
+    TestCaseDetailsPage testCaseDetailsPage;
+    ProjectPage projectPage;
 
-    protected String userEmail = "sharnikovaev@gmail.com";
-    protected String userPassword = "Lenor4ik";
+    protected String userEmail;
+    protected String userPassword;
 
 
     @BeforeMethod(description = "Setup and start browser")
@@ -45,12 +48,14 @@ public class BaseTest {
         administrationPage = new AdministrationPage(driver);
         confirmationModalPage = new СonfirmationModalPage(driver);
         overviewProjectPage = new OverviewProjectPage(driver);
-        testCasesProjectPage = new TestCasesProjectPage(driver);
-        testRunsProjectPage = new TestRunsProjectPage(driver);
+        testCasesProjectPage = new TestCasesPage(driver);
+        testRunsProjectPage = new TestRunsPage(driver);
+        testCaseDetailsPage = new TestCaseDetailsPage(driver);
+        projectPage = new ProjectPage(driver);
 
-//        BasePage.baseUrl = System.getenv().getOrDefault("TESTRAIL_URL", PropertyReader.getProperty("testrail.url"));
-//        userEmail = System.getenv().getOrDefault("TESTRAIL_EMAIL", PropertyReader.getProperty("testrail.email"));
-//        userPassword = System.getenv().getOrDefault("TESTRAIL_PASSWORD", PropertyReader.getProperty("testrail.password"));
+        BasePage.baseUrl = System.getenv().getOrDefault("TESTRAIL_URL", PropertyReader.getProperty("testrail.url"));
+        userEmail = System.getenv().getOrDefault("TESTRAIL_EMAIL", PropertyReader.getProperty("testrail.email"));
+        userPassword = System.getenv().getOrDefault("TESTRAIL_PASSWORD", PropertyReader.getProperty("testrail.password"));
     }
 
     @AfterMethod(alwaysRun = true, description = "Close browser")

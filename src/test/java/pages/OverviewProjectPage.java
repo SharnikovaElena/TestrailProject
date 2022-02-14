@@ -40,8 +40,8 @@ public class OverviewProjectPage extends BasePage {
     }
 
     @Step("Click on the Add Test Case link and go to the page TestCasesProjectPage")
-    public TestCasesProjectPage addTestCases() {
+    public TestCasesPage addTestCases() {
         driver.findElement(ADD_TEST_CASE_LINK).click();
-        return new TestCasesProjectPage(driver);
+        return new TestCasesPage(driver);
     }
 }

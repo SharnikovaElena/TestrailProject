@@ -18,22 +18,23 @@ public class DashboardPage extends BasePage {
 
     String projectTitle = "//div[@class='table summary summary-auto']//a[text()='%s']";
 
+
     public DashboardPage(WebDriver driver) {
         super(driver);
     }
 
     @Override
     public boolean isPageOpen() throws InterruptedException {
-        return isExit(CONTENT_HEADER_TITLE);
+        return isExit(By.xpath("//div[@id='header']//li/a[contains(text(), 'Dashboard')])"));
     }
 
     @Step("Get the title of the page")
     public String getTitlePageValue() {
-        return driver.findElement(CONTENT_HEADER_TITLE).getText();
+        return driver.findElement(TITLE_THE_OPENED_PAGE).getText();
     }
 
     @Step("Go to MySettingsPage")
-    public MySettingsPage navigationUserSettings() {
+    public MySettingsPage selectMenuUserMySettings() {
         log.info("Find the Navigation Username element and click on it");
         driver.findElement(NAVIGATION_USERNAME).click();
         log.debug("Click on an item from the My Settings list");
@@ -42,7 +43,7 @@ public class DashboardPage extends BasePage {
     }
 
     @Step("Log out of the account")
-    public LoginPage navigationUserLogout() {
+    public LoginPage selectMenuUserLogout() {
         log.info("Find the Navigation Username element and click on it");
         driver.findElement(NAVIGATION_USERNAME).click();
         log.debug("Click on an item from the Logout list");

@@ -8,14 +8,17 @@ public class TestCaseFactory {
 
     public static TestCase get() {
         return TestCase.builder().title(faker.pokemon().name())
-                .section("Test Case")
-                .template("Exploratory Session")
+                .section("Test Cases")
+                .template("Test Case (Text)")
                 .type("Functional")
                 .priority("High")
-                .estimate(String.valueOf(faker.number().randomNumber()))
+                .estimate(faker.number().digit())
                 .references(faker.internet().url())
-                .automationType("None").build();
-
+                .automationType("None")
+                .preconditions(faker.pokemon().name())
+                .steps(faker.animal().name())
+                .expectedResult(faker.book().publisher())
+                .build();
     }
 }
 

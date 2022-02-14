@@ -25,18 +25,4 @@ public class OverviewProjectTest extends BaseTest {
         log.info("Completion openOverviewTabTest");
     }
 
-    @Test(description = "Checking the ability to edit project data")
-    public void editProjectTest() throws InterruptedException {
-        log.info("editProjectTest. Open the DashboardPage");
-        loginPage
-                .open()
-                .login(userEmail, userPassword);
-        log.info("Click on the name of the project on DashboardPage");
-        dashboardPage.openProject("Graduation project");
-        log.info("Click on the Edit button and make changes to the project");
-        overviewProjectPage.editProject(faker.backToTheFuture().character());
-        log.debug("Verify that changes to the project have been successfully saved");
-        Assert.assertEquals(administrationPage.popUpResultMessage(), "Successfully updated the project.", "Failed to edit project");
-        log.info("Completion editProjectTest");
-   }
 }

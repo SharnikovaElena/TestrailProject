@@ -3,7 +3,9 @@ package tests;
 import com.github.javafaker.Faker;
 import lombok.extern.log4j.Log4j2;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.DashboardPage;
 import utils.AllureUtils;
 
 
@@ -12,31 +14,35 @@ public class DashboardTest extends BaseTest {
 
     static Faker faker = new Faker();
 
-    @Test(description = "Сhecking the transition to the MysettingsPage")
-    public void transitionToMysettingsPageTest() throws InterruptedException {
-        log.info("Run test checkingTransitionToMysettingsPage. Open the DashboardPage");
+    @BeforeMethod (description = "Login to account, open the DashboardPage")
+    public DashboardPage loginToAccount() {
         loginPage
                 .open()
                 .login(userEmail, userPassword);
+        return new DashboardPage(driver);
+    }
 
-        log.info("Let's go to the MysettingsPage");
-        boolean isMysettingsPageOpened = dashboardPage
-                .navigationUserSettings()
+
+    @Test(description = "Сhecking the transition to the MySettingsPage", priority = 1)
+    public void selectMenuUserMySettingsTest() throws InterruptedException {
+        log.info("Run test checkingTransitionToMySettingsPage");
+        log.info("Start BeforeMethod: login to account, open the DashboardPage");
+
+        boolean isMySettingsPageOpened = dashboardPage
+                .selectMenuUserMySettings()
                 .isPageOpen();
         AllureUtils.takeScreenshot(driver);
         Assert.assertEquals(mysettingsPage.getTitlePageValue(), "My Settings", "MySettingsPage is not open");
-        log.info("Completion test checkingTransitionToMysettingsPage");
+        log.info("Completion test checkingTransitionToMySettingsPage");
     }
 
-    @Test(description = "Log out of the account")
-    public void navigationUserLogoutTest() throws InterruptedException {
-        log.info("Run test checkingNavigationUserLogout. Open the DashboardPage");
-        loginPage
-                .open()
-                .login(userEmail, userPassword);
 
+    @Test(description = "Log out of the account", priority = 2)
+    public void selectMenuUserLogoutTest() throws InterruptedException {
+        log.info("Run test checkingNavigationUserLogout");
+        log.info("Start BeforeMethod: login to account, open the DashboardPage");
         boolean isLoginPageOpened = dashboardPage
-                .navigationUserLogout()
+                .selectMenuUserLogout()
                 .isPageOpen();
         AllureUtils.takeScreenshot(driver);
         Assert.assertEquals(loginPage.getTitlePageValue(), "Log In", "LoginPage is not open");
@@ -44,12 +50,10 @@ public class DashboardTest extends BaseTest {
     }
 
 
-    @Test(description = "Add Example Project", priority = 2) //enabled = false
+    @Test(description = "Add Example Project", priority = 3) //enabled = false
     public void addExampleProjectTest() throws InterruptedException {
         log.info("Run test addExampleProjectTest. Open the DashboardPage");
-        loginPage
-                .open()
-                .login(userEmail, userPassword);
+        log.info("Start BeforeMethod: login to account, open the DashboardPage");
 
         dashboardPage.addExampleProject(faker.animal().name());
         boolean isExampleProjectCreate = overviewProjectPage.isPageOpen();
@@ -60,12 +64,10 @@ public class DashboardTest extends BaseTest {
     }
 
 
-    @Test(description = "Creation of a working project for a graduation project", priority = 3)
-    public void addTestProject() throws InterruptedException {
+    @Test(description = "Creation of a working project for a graduation project", priority = 4)
+    public void addProjectTest() throws InterruptedException {
         log.info("Run test addNewProjectTest. Open the DashboardPage");
-        loginPage
-                .open()
-                .login(userEmail, userPassword);
+        log.info("Start BeforeMethod: login to account, open the DashboardPage");
 
         dashboardPage.addNewProject("Graduation project", faker.book().publisher());
         AllureUtils.takeScreenshot(driver);
@@ -73,5 +75,4 @@ public class DashboardTest extends BaseTest {
         Assert.assertEquals(administrationPage.popUpResultMessage(), "Successfully added the new project.", "Failed to add the new project.");
         log.info("Completion test addNewProjectTest");
     }
-
 }

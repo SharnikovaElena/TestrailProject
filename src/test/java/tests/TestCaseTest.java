@@ -1,30 +1,95 @@
 package tests;
 
+import com.github.javafaker.Faker;
 import lombok.extern.log4j.Log4j2;
 import models.TestCase;
 import models.TestCaseFactory;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.DashboardPage;
+import utils.AllureUtils;
 
 @Log4j2
-public class TestCaseTest extends BaseTest{
+public class TestCaseTest extends BaseTest {
 
-    @Test
-    public void createNewTestCase(){
-        log.info("Run createNewTestCase. Open the DashboardPage");
+    static Faker faker = new Faker();
+
+    @BeforeMethod(description = "Login to account, open the DashboardPage")
+    public DashboardPage loginToAccount() {
         loginPage
                 .open()
                 .login(userEmail, userPassword);
+        return new DashboardPage(driver);
+    }
+
+
+    @Test (description = "Creating a new Test Case in a project.")
+    public void createNewTestCase() {
+        log.info("Run createNewTestCase. Open the DashboardPage");
+        log.info("Start BeforeMethod: login to account, open the DashboardPage");
+
         log.info("Click on the name of the project on DashboardPage");
         dashboardPage.openProject("Graduation project");
 
+        log.info("Opening a form for describing a new test case. Creating a new test case");
         TestCase testCase = TestCaseFactory.get();
-//        boolean isTestCaseOpen =
-                overviewProjectPage.addTestCases()
+        overviewProjectPage.addTestCases()
                 .createNewTestCase(testCase);
-//        .isPageOpen();
-//        AllureUtils.takeScreenshot(driver);
-//
-//        log.error("New Test Case creation completed");
+        AllureUtils.takeScreenshot(driver);
+        AllureUtils.takeScreenshot(driver);
+        Assert.assertEquals(administrationPage.popUpResultMessage(), "Successfully added the new test case. Add another", "Test case not created");
+        log.error("Completion test createNewTestCase");
+    }
+
+    @Test
+    public void createTrainingTestCase() {
+        log.info("Run createTrainingTestCase. Open the DashboardPage");
+        log.info("Start BeforeMethod: login to account, open the DashboardPage");
+
+        log.info("Click on the name of the project on DashboardPage");
+        dashboardPage.openProject("Graduation project");
+
+        log.info("Opening a form for describing a new test case. Creating a new test case");
+        TestCase testCase = new TestCase("Training Test Case",
+                "Test Cases",
+                "Test Case (Text)",
+                "Functional",
+                "Critical",
+                "2 hours",
+                "https://jira.elsharnikova.com/",
+                "None",
+                "We go to the TestRail website, create a test project called 'Graduation project'",
+                "\n" +
+                        "1. On the right sidebar, click on the Add button in the Test Cases section.\n" +
+                        "2. Fill in all the fields with the necessary information.\n" +
+                        "3. Click on the 'Add Test Case' button",
+                "We check that the test case has been created and the content of all fields corresponds to the information that was entered when creating the project");
+        overviewProjectPage.addTestCases()
+                .createNewTestCase(testCase);
+        AllureUtils.takeScreenshot(driver);
+        AllureUtils.takeScreenshot(driver);
+        Assert.assertEquals(administrationPage.popUpResultMessage(), "Successfully added the new test case. Add another", "Test case not created");
+        Assert.assertEquals(testCaseDetailsPage.getContainedTextInTheField("Type"), "Type\n" + testCase.getType(), "Type does not match");
+        Assert.assertEquals(testCaseDetailsPage.getContainedTextInTheField("Priority"), "Priority\n" + testCase.getPriority(), "Priority does not match");
+        Assert.assertEquals(testCaseDetailsPage.getContainedTextInTheField("Estimate"), "Estimate\n" + testCase.getEstimate(), "Estimate does not match");
+        Assert.assertEquals(testCaseDetailsPage.getContainedTextInTheField("References"), "References\n" + testCase.getReferences(), "References does not match");
+        Assert.assertEquals(testCaseDetailsPage.getContainedTextInTheField("Automation Type"), "Automation Type\n" + testCase.getAutomationType(), "Automation Type does not match");
+        Assert.assertEquals(testCaseDetailsPage.getContainedTextInTheField("Estimate"), "Estimate\n" + testCase.getEstimate(), "Estimate does not match");
+//        Assert.assertEquals(testCaseDetailsPage.getContainedTextInThePreconditionsField(), testCase.getPreconditions(), "Preconditions does not match");
+//        Assert.assertEquals(testCaseDetailsPage.getContainedTextInTheExpectedResultField(), testCase.getExpectedResult(), "Expected Result does not match");
+//        Assert.assertEquals(testCaseDetailsPage.getContainedTextInTheStepsField(), testCase.getSteps(), "Steps does not match");
+    }
+
+    @Test(description = "Deleting Test Case by its name")
+    public void deleteTestCaseTest() {
+        log.info("Run createNewTestCase. Open the DashboardPage");
+        log.info("Start BeforeMethod: login to account, open the DashboardPage");
+
+        log.info("Click on the name of the project on DashboardPage");
+        dashboardPage.openProject("Graduation project");
+        projectPage.selectingSectionOnTheProjectPage("Test Cases");
+        testCasesProjectPage.deleteTestCase("Training Test Case");
+        //дописать ассерт
     }
 }
-

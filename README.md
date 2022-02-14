@@ -43,6 +43,8 @@ CheckList OverviewProjectPage
 
 
 CheckList TestCasesProjectPage
-
+26. Creating a new Test Case.
+27. Editing a Test Case.
+28. Deleting a Test Case.
 
 CheckList TestRunsProjectPage
