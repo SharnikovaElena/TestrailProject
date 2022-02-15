@@ -22,7 +22,7 @@ public class ApiTest {
 
         ResponseStatusNegative actual = new CaseAdapter().postCreateTestCaseNegative(testCaseForApi, 400);
         ResponseStatusNegative expected = ResponseStatusNegative.builder()
-                .errorMessage("Field :title is a required field.")
+                .error("Field :title is a required field.")
                 .build();
         assertEquals(actual, expected);
 
