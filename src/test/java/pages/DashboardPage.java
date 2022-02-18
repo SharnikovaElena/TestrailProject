@@ -62,7 +62,7 @@ public class DashboardPage extends BasePage {
         driver.findElement(ADD_PROJECT_BUTTON).click();
         driver.findElement(By.id("name")).sendKeys(newProjectName);
         driver.findElement(By.id("announcement")).sendKeys(announcement);
-        driver.findElement(ADD_PROJECT_SUBMIT).click();
+        driver.findElement(SAVE_ADD_PROJECT_OR_TESTCASE_OR_TESTRUN).click();
         return new AdministrationPage(driver);
     }
 

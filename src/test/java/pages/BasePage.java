@@ -14,7 +14,7 @@ public abstract class BasePage {
     protected static final By ERROR_MASSAGE_FOR_ALERT = By.xpath("//div[@class='error-text']");
     protected static final By TITLE_THE_OPENED_PAGE = By.xpath("//div[contains(@class, 'content-header-title')]");
     protected static final By ADMINISTRATION_TITLE = By.id("navigation-admin");
-    protected static final By ADD_PROJECT_SUBMIT = By.id("accept");
+    protected static final By SAVE_ADD_PROJECT_OR_TESTCASE_OR_TESTRUN = By.id("accept");
     String titleTheSectionOnTheHeader = "//div[@id='header']//li/a[contains(text(), '%s')]";
     public static String baseUrl;
 

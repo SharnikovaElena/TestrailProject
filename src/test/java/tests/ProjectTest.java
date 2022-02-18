@@ -22,6 +22,7 @@ public class ProjectTest extends BaseTest {
         loginPage
                 .open()
                 .login(userEmail, userPassword);
+        AllureUtils.takeScreenshot(driver);
         return new DashboardPage(driver);
     }
 

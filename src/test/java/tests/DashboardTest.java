@@ -19,6 +19,7 @@ public class DashboardTest extends BaseTest {
         loginPage
                 .open()
                 .login(userEmail, userPassword);
+        AllureUtils.takeScreenshot(driver);
         return new DashboardPage(driver);
     }
 
@@ -69,7 +70,7 @@ public class DashboardTest extends BaseTest {
         log.info("Run test addNewProjectTest. Open the DashboardPage");
         log.info("Start BeforeMethod: login to account, open the DashboardPage");
 
-        dashboardPage.addNewProject("Graduation project", faker.book().publisher());
+        dashboardPage.addNewProject("Graduation project " + faker.number().randomDigit(), faker.book().publisher());
         AllureUtils.takeScreenshot(driver);
         log.debug("Сheck that the New Project has been created");
         Assert.assertEquals(administrationPage.popUpResultMessage(), "Successfully added the new project.", "Failed to add the new project.");

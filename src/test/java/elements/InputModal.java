@@ -12,7 +12,7 @@ public class InputModal {
     String nameInput;
 
 
-    String inputLocator = "//input[@name='%s'][contains(@class, 'form-control form-control-full form-fields')]";
+    String inputLocator = "//input[@name='%s'][contains(@class, 'form-control')]";
 
     public InputModal(WebDriver driver, String nameInput) {
         this.driver = driver;

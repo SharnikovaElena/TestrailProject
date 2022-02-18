@@ -20,11 +20,12 @@ public class TestCaseTest extends BaseTest {
         loginPage
                 .open()
                 .login(userEmail, userPassword);
+        AllureUtils.takeScreenshot(driver);
         return new DashboardPage(driver);
     }
 
 
-    @Test(description = "Creating a new Test Case in a project.")
+    @Test(description = "Creating a new Test Case in a project.", priority = 1)
     public void createNewTestCase() {
         log.info("Run createNewTestCase. Open the DashboardPage");
         log.info("Start BeforeMethod: login to account, open the DashboardPage");
@@ -37,12 +38,11 @@ public class TestCaseTest extends BaseTest {
         overviewProjectPage.addTestCases()
                 .createNewTestCase(testCase);
         AllureUtils.takeScreenshot(driver);
-        AllureUtils.takeScreenshot(driver);
         Assert.assertEquals(administrationPage.popUpResultMessage(), "Successfully added the new test case. Add another", "Test case not created");
-        log.error("Completion test createNewTestCase");
+        log.info("Completion test createNewTestCase");
     }
 
-    @Test
+    @Test(description = "Create a test case named 'Training Test Case'", priority = 2)
     public void createTrainingTestCase() {
         log.info("Run createTrainingTestCase. Open the DashboardPage");
         log.info("Start BeforeMethod: login to account, open the DashboardPage");
@@ -67,7 +67,6 @@ public class TestCaseTest extends BaseTest {
         overviewProjectPage.addTestCases()
                 .createNewTestCase(testCase);
         AllureUtils.takeScreenshot(driver);
-        AllureUtils.takeScreenshot(driver);
         Assert.assertEquals(administrationPage.popUpResultMessage(), "Successfully added the new test case. Add another", "Test case not created");
         Assert.assertEquals(testCaseDetailsPage.getContainedTextInTheField("Type"), "Type\n" + testCase.getType(), "Type does not match");
         Assert.assertEquals(testCaseDetailsPage.getContainedTextInTheField("Priority"), "Priority\n" + testCase.getPriority(), "Priority does not match");
@@ -78,17 +77,40 @@ public class TestCaseTest extends BaseTest {
         Assert.assertEquals(testCaseDetailsPage.getContainedTextInThePreconditionsField(), testCase.getPreconditions(), "Preconditions does not match");
         Assert.assertEquals(testCaseDetailsPage.getContainedTextInTheExpectedResultField(), testCase.getExpectedResult(), "Expected Result does not match");
         Assert.assertEquals(testCaseDetailsPage.getContainedTextInTheStepsField(), testCase.getSteps(), "Steps does not match");
+        log.info("Completion test createTrainingTestCase");
+
     }
 
-    @Test(description = "Deleting Test Case by its name")
-    public void deleteTestCaseTest() {
-        log.info("Run createNewTestCase. Open the DashboardPage");
+    @Test(description = "Deleting a test case named 'Training Test Case'", priority = 3)
+    public void deleteTestCaseByName() {
+        log.info("Run deleteTestCaseByName. Open the DashboardPage");
         log.info("Start BeforeMethod: login to account, open the DashboardPage");
 
         log.info("Click on the name of the project on DashboardPage");
         dashboardPage.openProject("Graduation project");
+        log.info("Go to the test cases section");
         projectPage.selectingSectionOnTheProjectPage("Test Cases");
-        testCasesProjectPage.deleteTestCase("Training Test Case");
-        //дописать ассерт
+        Assert.assertEquals(testCasesPage.getTitlePageValue(), "Test Cases", "Failed to open 'Test Cases' page");
+        AllureUtils.takeScreenshot(driver);
+
+        testCasesPage.deleteTestCase("Training Test Case");
+        AllureUtils.takeScreenshot(driver);
+        Assert.assertFalse(testCasesPage.nameTestCaseNotExist("Training Test Case"), "Unable to remove test case from page TestCasesPage");
+        log.info("Completion test deleteTestCaseByName");
+    }
+
+    @Test(description = "Deleting all test cases in a project", priority = 4)
+    public void deleteAllTestsCases() {
+        log.info("Run deleteAllTestsCases. Open the DashboardPage");
+        log.info("Start BeforeMethod: login to account, open the DashboardPage");
+
+        log.info("Click on the name of the project on DashboardPage");
+        dashboardPage.openProject("Graduation project");
+        log.info("Go to the test cases section");
+        projectPage.selectingSectionOnTheProjectPage("Test Cases");
+        testCasesPage.deleteAllTestsCases();
+        AllureUtils.takeScreenshot(driver);
+//        Assert.assertEquals(testCasesPage.getNumberOfTestCasesInTheProject(), "0", "Unable to delete all test cases in open project");
+
     }
 }

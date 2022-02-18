@@ -27,7 +27,8 @@
         <gson>2.8.9</gson>
         <rest-assured>4.5.0</rest-assured>
 
-        <!--        <suiteXml>testng.xml</suiteXml>-->
+        <suiteXmlFile>src/test/resources/regression.xml</suiteXmlFile>
+
     </properties>
 
     <build>
@@ -41,9 +42,9 @@
                         -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectjweaver.version}/aspectjweaver-${aspectjweaver.version}.jar
                         -Xmx256m
                     </argLine>
-                    <!--                    <suiteXmlFiles>-->
-                    <!--                        <suiteXmlFile>src/test/resources/${suiteXml}</suiteXmlFile>-->
-                    <!--                    </suiteXmlFiles>-->
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+                    </suiteXmlFiles>
                 </configuration>
             </plugin>
 
