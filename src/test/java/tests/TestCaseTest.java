@@ -35,7 +35,8 @@ public class TestCaseTest extends BaseTest {
 
         log.info("Opening a form for describing a new test case. Creating a new test case");
         TestCase testCase = TestCaseFactory.get();
-        overviewProjectPage.addTestCases()
+        overviewProjectPage
+                .addTestCases()
                 .createNewTestCase(testCase);
         AllureUtils.takeScreenshot(driver);
         Assert.assertEquals(administrationPage.popUpResultMessage(), "Successfully added the new test case. Add another", "Test case not created");
@@ -64,7 +65,8 @@ public class TestCaseTest extends BaseTest {
                         "Fill in all the fields with the necessary information.\n" +
                         "Click on the 'Add Test Case' button",
                 "We check that the test case has been created and the content of all fields corresponds to the information that was entered when creating the project");
-        overviewProjectPage.addTestCases()
+        overviewProjectPage
+                .addTestCases()
                 .createNewTestCase(testCase);
         AllureUtils.takeScreenshot(driver);
         Assert.assertEquals(administrationPage.popUpResultMessage(), "Successfully added the new test case. Add another", "Test case not created");
@@ -90,12 +92,14 @@ public class TestCaseTest extends BaseTest {
         dashboardPage.openProject("Graduation project");
         log.info("Go to the test cases section");
         projectPage.selectingSectionOnTheProjectPage("Test Cases");
-        Assert.assertEquals(testCasesPage.getTitlePageValue(), "Test Cases", "Failed to open 'Test Cases' page");
         AllureUtils.takeScreenshot(driver);
+        Assert.assertEquals(testCasesPage.getTitlePageValue(), "Test Cases", "Failed to open 'Test Cases' page");
 
+        log.info("Go to the test cases section");
         testCasesPage.deleteTestCase("Training Test Case");
         AllureUtils.takeScreenshot(driver);
-        Assert.assertFalse(testCasesPage.nameTestCaseNotExist("Training Test Case"), "Unable to remove test case from page TestCasesPage");
+
+        Assert.assertTrue(testCasesPage.nameTestCaseNotExist("Training Test Case"), "Unable to remove test case from page TestCasesPage");
         log.info("Completion test deleteTestCaseByName");
     }
 
@@ -106,11 +110,19 @@ public class TestCaseTest extends BaseTest {
 
         log.info("Click on the name of the project on DashboardPage");
         dashboardPage.openProject("Graduation project");
+
+        log.info("Create a test case");
+        TestCase testCase = TestCaseFactory.get();
+        overviewProjectPage
+                .addTestCases()
+                .createNewTestCase(testCase);
+
         log.info("Go to the test cases section");
         projectPage.selectingSectionOnTheProjectPage("Test Cases");
         testCasesPage.deleteAllTestsCases();
-        AllureUtils.takeScreenshot(driver);
-//        Assert.assertEquals(testCasesPage.getNumberOfTestCasesInTheProject(), "0", "Unable to delete all test cases in open project");
 
+        Assert.assertEquals(testCasesPage.getNumberOfTestCasesInTheProject(), "0", "Unable to delete all test cases in open project");
+        AllureUtils.takeScreenshot(driver);
+        log.info("Completion test deleteAllTestsCases");
     }
 }

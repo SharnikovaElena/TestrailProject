@@ -2,17 +2,21 @@ package tests;
 
 import adapters.CaseAdapter;
 
+import com.github.javafaker.Faker;
 import models.*;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-public class ApiTest {
+public class TestCaseApiTest {
+
+    static Faker faker = new Faker();
 
     @Test(description = "Negative test for Create new TestCase. 'Title' field is required")
     public void createTestCaseNegativeTest() {
         TestCaseForApi testCaseForApi = TestCaseForApi.builder()
-                .section_id(2767)
+                .section_id(3)
                 .title("")
                 .template_id(3)
                 .type_id(8)
@@ -30,8 +34,9 @@ public class ApiTest {
 
     @Test(description = "Positive test for Create new TestCase")
     public void createTestCasePositiveTest() {
-        TestCaseForApi testCaseForApi = TestCaseForApi.builder().title("TestCase")
-                .section_id(2767)
+        String caseTitle = faker.artist().name();
+        TestCaseForApi testCaseForApi = TestCaseForApi.builder().title(caseTitle)
+                .section_id(3)
                 .template_id(3)
                 .type_id(8)
                 .priority_id(1)
@@ -41,8 +46,7 @@ public class ApiTest {
         ResponseStatusPositive actual = new CaseAdapter().postCreateTestCasePositive(testCaseForApi, 200);
         ResponseStatusPositive expected = ResponseStatusPositive.builder()
                 .created_by(1)
-                .id(33987)
-                .title("TestCase")
+                .title(caseTitle)
                 .template_id(3)
                 .type_id(8)
                 .priority_id(1)
@@ -57,6 +61,13 @@ public class ApiTest {
         assertEquals(actual.getPriority_id(), expected.getPriority_id());
         assertEquals(actual.getEstimate(), expected.getEstimate());
         assertEquals(actual.getRefs(), expected.getRefs());
+
+
+//        int case_id = actual.getId();
+////    @Test(description = "Removing TestCase by case_id")
+////    public void deleteTestCase(){
+//        int actualStatusDelete = new CaseAdapter().postDeleteTestCaseByCorrectCode(200, case_id);
+//        Assert.assertEquals(actual, 200, "Failed to uninstall TestCase");
     }
 }
 

@@ -14,7 +14,7 @@ public class DashboardTest extends BaseTest {
 
     static Faker faker = new Faker();
 
-    @BeforeMethod (description = "Login to account, open the DashboardPage")
+    @BeforeMethod(description = "Login to account, open the DashboardPage")
     public DashboardPage loginToAccount() {
         loginPage
                 .open()
@@ -24,7 +24,7 @@ public class DashboardTest extends BaseTest {
     }
 
 
-    @Test(description = "Сhecking the transition to the MySettingsPage", priority = 1)
+    @Test(description = "Сhecking the transition to the MySettingsPage")
     public void selectMenuUserMySettingsTest() throws InterruptedException {
         log.info("Run test checkingTransitionToMySettingsPage");
         log.info("Start BeforeMethod: login to account, open the DashboardPage");
@@ -38,7 +38,7 @@ public class DashboardTest extends BaseTest {
     }
 
 
-    @Test(description = "Log out of the account", priority = 2)
+    @Test(description = "Log out of the account")
     public void selectMenuUserLogoutTest() throws InterruptedException {
         log.info("Run test checkingNavigationUserLogout");
         log.info("Start BeforeMethod: login to account, open the DashboardPage");
@@ -48,32 +48,5 @@ public class DashboardTest extends BaseTest {
         AllureUtils.takeScreenshot(driver);
         Assert.assertEquals(loginPage.getTitlePageValue(), "Log In", "LoginPage is not open");
         log.info("Completion test checkingNavigationUserLogout");
-    }
-
-
-    @Test(description = "Add Example Project", priority = 3) //enabled = false
-    public void addExampleProjectTest() throws InterruptedException {
-        log.info("Run test addExampleProjectTest. Open the DashboardPage");
-        log.info("Start BeforeMethod: login to account, open the DashboardPage");
-
-        dashboardPage.addExampleProject(faker.animal().name());
-        boolean isExampleProjectCreate = overviewProjectPage.isPageOpen();
-        AllureUtils.takeScreenshot(driver);
-        log.debug("Сheck that the Example Project has been created");
-        Assert.assertTrue(isExampleProjectCreate, "ExampleProject is not created");
-        log.info("Completion addExampleProjectTest");
-    }
-
-
-    @Test(description = "Creation of a working project for a graduation project", priority = 4)
-    public void addProjectTest() throws InterruptedException {
-        log.info("Run test addNewProjectTest. Open the DashboardPage");
-        log.info("Start BeforeMethod: login to account, open the DashboardPage");
-
-        dashboardPage.addNewProject("Graduation project " + faker.number().randomDigit(), faker.book().publisher());
-        AllureUtils.takeScreenshot(driver);
-        log.debug("Сheck that the New Project has been created");
-        Assert.assertEquals(administrationPage.popUpResultMessage(), "Successfully added the new project.", "Failed to add the new project.");
-        log.info("Completion test addNewProjectTest");
     }
 }

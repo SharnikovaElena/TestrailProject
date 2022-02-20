@@ -29,10 +29,11 @@ public abstract class BaseTest {
     СonfirmationModalPage confirmationModalPage;
     OverviewProjectPage overviewProjectPage;
     TestCasesPage testCasesPage;
-    TestRunsPage testRunsProjectPage;
+    TestRunsPage testRunsPage;
     TestCaseDetailsPage testCaseDetailsPage;
     ProjectPage projectPage;
     TestRunDetailsPage testRunDetailsPage;
+
 
     protected String userEmail;
     protected String userPassword;
@@ -79,7 +80,7 @@ public abstract class BaseTest {
         confirmationModalPage = new СonfirmationModalPage(driver);
         overviewProjectPage = new OverviewProjectPage(driver);
         testCasesPage = new TestCasesPage(driver);
-        testRunsProjectPage = new TestRunsPage(driver);
+        testRunsPage = new TestRunsPage(driver);
         testCaseDetailsPage = new TestCaseDetailsPage(driver);
         projectPage = new ProjectPage(driver);
         testRunDetailsPage = new TestRunDetailsPage(driver);

@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 @Builder
 public class TestCaseForApi {
+    int id;
     int section_id;
     String title;
     int template_id;

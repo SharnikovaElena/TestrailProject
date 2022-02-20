@@ -8,7 +8,7 @@ public class TestRunFactory {
 
     public static TestRun get() {
         return TestRun.builder()
-                .name("TestRunNew ")
+                .name("TestRun " + faker.date().birthday())
                 .references(faker.internet().url())
                 .milestone("")
                 .assignTo("Me")

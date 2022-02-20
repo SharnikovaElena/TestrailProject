@@ -65,16 +65,19 @@
 44. Checking the display of a chart with test run results. 
 45. Checking the sorting TestRun. 
 46. Testing the 'Assign To' Button. 
-47. Checking the opening of information about the test case.
+47. Checking the opening of information about the test case. 
+48. Checking TestRun launch via 'Rerun' button.
+49. Add result TestCase after Run.
+50. Checking the possibility of exporting test run results into different formats (XML, Excel/CSV).
 
 ###### CheckList ToDoPage
 
-48. Checking the operation of the 'Group by' and 'Filter' filters (based on test run results). 
-49. Checking the checkbox 'User Filter'.
+51. Checking the operation of the 'Group by' and 'Filter' filters (based on test run results). 
+52. Checking the checkbox 'User Filter'.
 
 ###### CheckList MilestonesPage
 
-50. Verifying that a Milestone has been added via the 'Add Milestone' button. 
-51. Milestone selection checkbox check. 
-52. Checking if the selected Milestones are deleted using the 'Delete selected' button. 
-53. Checking the ability to open the desired Milestone.
+53. Verifying that a Milestone has been added via the 'Add Milestone' button. 
+54. Milestone selection checkbox check. 
+55. Checking if the selected Milestones are deleted using the 'Delete selected' button. 
+56. Checking the ability to open the desired Milestone.

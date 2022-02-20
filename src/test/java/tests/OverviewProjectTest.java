@@ -24,5 +24,4 @@ public class OverviewProjectTest extends BaseTest {
         Assert.assertTrue(isOverviewTabOpen, "Project did not open");
         log.info("Completion openOverviewTabTest");
     }
-
 }

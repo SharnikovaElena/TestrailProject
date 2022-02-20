@@ -22,6 +22,7 @@ public class InputModal {
     @Step("Filling in the required fields to create a Project")
     public void write(String text) {
         log.info("Writing text in the input field by the specified name when creating a Test Case");
+        driver.findElement(By.xpath(String.format(inputLocator, this.nameInput))).clear();
         driver.findElement(By.xpath(String.format(inputLocator, this.nameInput))).sendKeys(text);
     }
 

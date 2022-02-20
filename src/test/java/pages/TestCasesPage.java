@@ -4,11 +4,14 @@ import elements.DropDownModal;
 import elements.InputModal;
 import elements.TextAreaModal;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import models.TestCase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-
+@Log4j2
 public class TestCasesPage extends BasePage {
 
     String checkboxForProjectSelection = "//span[contains(text(), '%s')]/ancestor::tr//input";
@@ -60,24 +63,37 @@ public class TestCasesPage extends BasePage {
     }
 
     @Step("Find out the number of test cases in an open project")
-    public String getNumberOfTestCasesInTheProject(){
-        return driver.findElement(By.id("sectionCount-2767")).getText();
+    public String getNumberOfTestCasesInTheProject() {
+        log.info("Determine the number of test cases on the project");
+        return driver.findElement(By.id("sectionCount-3")).getText();
     }
 
     @Step("Delete one Test Case in the project by its name")
     public TestCasesPage deleteTestCase(String nameTestCase) {
+        log.info("Check the checkbox named Test Case to be deleted");
         driver.findElement(By.xpath(String.format(checkboxForProjectSelection, nameTestCase))).click();
+        log.info("Click on the 'Delete' button");
         driver.findElement(DELETE_TEST_CASE_BUTTON).click();
+        log.info("Click on the 'Mark as Deleted' button in the Confirmation Modal");
         driver.findElement(By.xpath(testCaseDeletionConfirmation)).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.not(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//a/span[@class='title'][contains(text(), 'Training Test Case')]"))));
+
         return new TestCasesPage(driver);
     }
 
 
     @Step("Delete all Test Cases in the project")
     public TestCasesPage deleteAllTestsCases() {
+        log.info("Select all test cases of the project in the checkbox");
         driver.findElement(SELECT_ALL_TESTS_CASES).click();
+        log.info("Click on the 'Delete' button");
         driver.findElement(DELETE_TEST_CASE_BUTTON).click();
+        log.info("Click on the 'Mark as Deleted' button in the Confirmation Modal");
         driver.findElement(By.xpath(testCaseDeletionConfirmation)).click();
+        driver.findElement(SELECT_ALL_TESTS_CASES).click();
+        driver.navigate().refresh();
         return new TestCasesPage(driver);
     }
 }
