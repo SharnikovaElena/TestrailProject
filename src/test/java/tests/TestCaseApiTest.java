@@ -3,12 +3,14 @@ package tests;
 import adapters.CaseAdapter;
 
 import com.github.javafaker.Faker;
+import lombok.extern.log4j.Log4j2;
 import models.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
+@Log4j2
 public class TestCaseApiTest {
 
     static Faker faker = new Faker();
@@ -53,7 +55,7 @@ public class TestCaseApiTest {
                 .estimate("2h")
                 .refs("https://jira.elsharnikova.com/")
                 .build();
-
+        int id = actual.getId();
         assertEquals(actual.getCreated_by(), expected.getCreated_by());
         assertEquals(actual.getTitle(), expected.getTitle());
         assertEquals(actual.getTemplate_id(), expected.getTemplate_id());
@@ -62,12 +64,10 @@ public class TestCaseApiTest {
         assertEquals(actual.getEstimate(), expected.getEstimate());
         assertEquals(actual.getRefs(), expected.getRefs());
 
+        log.info("Removing TestCase by case_id");
 
-//        int case_id = actual.getId();
-////    @Test(description = "Removing TestCase by case_id")
-////    public void deleteTestCase(){
-//        int actualStatusDelete = new CaseAdapter().postDeleteTestCaseByCorrectCode(200, case_id);
-//        Assert.assertEquals(actual, 200, "Failed to uninstall TestCase");
+        int actualStatusDelete = new CaseAdapter().postDeleteTestCaseByCorrectCode(200, id);
+        Assert.assertEquals(actualStatusDelete, 200, "Failed to uninstall TestCase");
     }
 }
 

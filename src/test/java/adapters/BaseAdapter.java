@@ -44,7 +44,7 @@ public class BaseAdapter {
                         .extract().body().asString();
     }
 
-    public int delete(int statusCode, String url) {
+    public int delete(int statusCode, int case_id) {
         return
                 given().
                         log().all()
@@ -54,7 +54,7 @@ public class BaseAdapter {
                         .header("content-type", "application/json")
                         .header("postman-token", "b3b61d21-78d8-3e0a-af16-3e9c3e79d2ad")
                 .when()
-                        .get("https://diplomtms.testrail.io/index.php?/api/v2/" + url)
+                        .post("https://diplomtms.testrail.io/index.php?/api/v2/delete_case/" + case_id)
                 .then()
                         .log().all()
                         .statusCode(statusCode)
