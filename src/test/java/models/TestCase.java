@@ -19,5 +19,4 @@ public class TestCase {
     String preconditions;
     String steps;
     String expectedResult;
-
 }

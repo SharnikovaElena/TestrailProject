@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 public class TextAreaModal {
 WebDriver driver;
 String label;
-String textAreaLocator = "//label[contains(., '%s')]//ancestor::div[@class='form-group']//div[contains(@class, 'form-control-full field-editor')]";
+String textAreaLocator = "//label[contains(., '%s')]/ancestor::div[@class='form-group']//div[contains(@class, 'form-control-full')]";
 
     public TextAreaModal(WebDriver driver, String label) {
         this.driver = driver;
@@ -17,7 +17,7 @@ String textAreaLocator = "//label[contains(., '%s')]//ancestor::div[@class='form
     }
 
     public void write(String text) {
-        log.info("Writing text into textarea with by the specified name when creating a new Test Case");
+        log.info("Writing text into textarea with by the specified name");
         driver.findElement(By.xpath(String.format(textAreaLocator, this.label))).sendKeys(text);
     }
 }

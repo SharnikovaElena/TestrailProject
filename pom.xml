@@ -24,7 +24,11 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven-surefire-plugin>3.0.0-M5</maven-surefire-plugin>
         <webdrivermanager>5.0.0</webdrivermanager>
-<!--        <suiteXml>testng.xml</suiteXml>-->
+        <gson>2.8.9</gson>
+        <rest-assured>4.5.0</rest-assured>
+
+        <suiteXmlFile>src/test/resources/regression.xml</suiteXmlFile>
+
     </properties>
 
     <build>
@@ -38,9 +42,9 @@
                         -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectjweaver.version}/aspectjweaver-${aspectjweaver.version}.jar
                         -Xmx256m
                     </argLine>
-<!--                    <suiteXmlFiles>-->
-<!--                        <suiteXmlFile>src/test/resources/${suiteXml}</suiteXmlFile>-->
-<!--                    </suiteXmlFiles>-->
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+                    </suiteXmlFiles>
                 </configuration>
             </plugin>
 
@@ -53,6 +57,21 @@
     </build>
 
     <dependencies>
+
+        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gson}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${rest-assured}</version>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.aspectj</groupId>

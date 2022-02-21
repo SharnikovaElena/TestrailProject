@@ -11,6 +11,7 @@ public class СonfirmationModalPage extends BasePage {
     private static final By OK_BUTTON = By.xpath("//div[@id='deleteDialog']/div/a[contains(text(), 'OK')]");
 
 
+
     public СonfirmationModalPage(WebDriver driver) {
         super(driver);
     }

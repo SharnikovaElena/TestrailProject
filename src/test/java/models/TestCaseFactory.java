@@ -7,7 +7,7 @@ public class TestCaseFactory {
 
 
     public static TestCase get() {
-        return TestCase.builder().title(faker.pokemon().name())
+        return TestCase.builder().title("Test Case")
                 .section("Test Cases")
                 .template("Test Case (Text)")
                 .type("Functional")
