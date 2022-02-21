@@ -34,7 +34,7 @@ public class TestCaseApiTest {
 
     }
 
-    @Test(description = "Positive test for Create new TestCase")
+    @Test(description = "Positive test for Create new TestCase and Delete it")
     public void createAndDeleteTestCasePositiveTest() {
 
         log.info("Run test createAndDeleteTestCasePositiveTest");
