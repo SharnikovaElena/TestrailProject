@@ -35,7 +35,9 @@ public class TestCaseApiTest {
     }
 
     @Test(description = "Positive test for Create new TestCase")
-    public void createTestCasePositiveTest() {
+    public void createAndDeleteTestCasePositiveTest() {
+
+        log.info("Run test createAndDeleteTestCasePositiveTest");
         String caseTitle = faker.artist().name();
         TestCaseForApi testCaseForApi = TestCaseForApi.builder().title(caseTitle)
                 .section_id(3)
@@ -68,6 +70,7 @@ public class TestCaseApiTest {
 
         int actualStatusDelete = new CaseAdapter().postDeleteTestCaseByCorrectCode(200, id);
         Assert.assertEquals(actualStatusDelete, 200, "Failed to uninstall TestCase");
+        log.info("Completion test createAndDeleteTestCasePositiveTest");
     }
 }
 
