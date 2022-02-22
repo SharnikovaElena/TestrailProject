@@ -13,7 +13,6 @@ import utils.AllureUtils;
 @Log4j2
 public class TestCaseTest extends BaseTest {
 
-    static Faker faker = new Faker();
 
     @BeforeMethod(description = "Login to account, open the DashboardPage")
     public DashboardPage loginToAccount() {

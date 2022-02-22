@@ -1,7 +1,7 @@
 package tests;
-
-import com.github.javafaker.Faker;
 import lombok.extern.log4j.Log4j2;
+import models.TestCase;
+import models.TestCaseFactory;
 import models.TestRun;
 import models.TestRunFactory;
 import org.testng.Assert;
@@ -10,11 +10,10 @@ import org.testng.annotations.Test;
 import pages.DashboardPage;
 import utils.AllureUtils;
 
+
 @Log4j2
 public class TestRunsTest extends BaseTest {
 
-    static Faker faker = new Faker();
-    String nameTestRun = faker.artist().name();
 
     @BeforeMethod(description = "Login to account, open the DashboardPage")
     public DashboardPage loginToAccount() {
@@ -33,6 +32,12 @@ public class TestRunsTest extends BaseTest {
 
         log.info("Click on the name of the project on DashboardPage");
         dashboardPage.openProject("Graduation project");
+        log.info("Create new TestCase");
+        TestCase testCase = TestCaseFactory.get();
+        overviewProjectPage
+                .addTestCases()
+                .createNewTestCase(testCase);
+        projectPage.selectingSectionOnTheProjectPage("Overview");
         log.info("Create new TestRun");
         TestRun testRun = TestRunFactory.get();
         boolean isNewTestRunCreated = overviewProjectPage
@@ -49,7 +54,7 @@ public class TestRunsTest extends BaseTest {
 
 
     @Test(description = "Checking TestRun launch via 'Rerun' button.", priority = 2)
-    public void rerunTest(){
+    public void rerunTest() {
         log.info("Run rerunTest. Open the DashboardPage");
         log.info("Start BeforeMethod: login to account, open the DashboardPage");
 
@@ -73,8 +78,8 @@ public class TestRunsTest extends BaseTest {
         log.info("Click on the name of the project on DashboardPage");
         dashboardPage.openProject("Graduation project");
         projectPage.selectingSectionOnTheProjectPage("Test Runs & Results");
-        testRunsPage
-                .openTestRun().addTestCaseResult("Blocked");
+        testRunsPage.openTestRun()
+                .addTestCaseResult("Blocked");
         AllureUtils.takeScreenshot(driver);
 
         Assert.assertEquals(testRunDetailsPage.getValueLatestStatusTestCase(), "Blocked", "New TestCase status does not match");
@@ -82,8 +87,8 @@ public class TestRunsTest extends BaseTest {
 
 
     @Test(description = "TestRun Uninstall Check", priority = 3)
-  public void deleteAllRunTest(){
-      log.info("Run deleteAllRunTest. Open the DashboardPage");
+    public void deleteAllRunTest() {
+        log.info("Run deleteAllRunTest. Open the DashboardPage");
         log.info("Start BeforeMethod: login to account, open the DashboardPage");
 
         log.info("Click on the name of the project on DashboardPage");
@@ -91,8 +96,8 @@ public class TestRunsTest extends BaseTest {
 
         projectPage.selectingSectionOnTheProjectPage("Test Runs & Results");
         testRunsPage.deleteAllRun();
-      AllureUtils.takeScreenshot(driver);
-      Assert.assertEquals(administrationPage.popUpResultMessage(), "Successfully deleted the test runs.", "Unable to delete selected TestRun");
-      log.info("Completion test deleteAllRunTest");
+        AllureUtils.takeScreenshot(driver);
+        Assert.assertEquals(administrationPage.popUpResultMessage(), "Successfully deleted the test runs.", "Unable to delete selected TestRun");
+        log.info("Completion test deleteAllRunTest");
     }
 }

@@ -4,6 +4,7 @@ import com.github.javafaker.Faker;
 import lombok.extern.log4j.Log4j2;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.AdministrationPage;
@@ -15,6 +16,7 @@ import utils.AllureUtils;
 public class ProjectTest extends BaseTest {
 
     static Faker faker = new Faker();
+
 
     @BeforeMethod(description = "Login to account, open the DashboardPage")
     public DashboardPage loginToAccount() {
@@ -31,7 +33,7 @@ public class ProjectTest extends BaseTest {
         log.info("Run test addExampleProjectTest. Open the DashboardPage");
         log.info("Start BeforeMethod: login to account, open the DashboardPage");
 
-        dashboardPage.addExampleProject(faker.animal().name());
+        dashboardPage.addExampleProject("Example Project");
         boolean isExampleProjectCreate = overviewProjectPage.isPageOpen();
         AllureUtils.takeScreenshot(driver);
         log.debug("Сheck that the Example Project has been created");
