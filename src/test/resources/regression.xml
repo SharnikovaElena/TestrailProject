@@ -7,7 +7,8 @@
         <classes>
             <class name="tests.LoginTest"/>
             <class name="tests.ForgotPasswordTest"/>
-            <class name="tests.ProjectTest"/>
+            <class name="tests.TestCaseTest"/>
+
         </classes>
     </test> <!-- Test -->
 
@@ -17,16 +18,16 @@
             <class name="tests.DashboardTest"/>
             <class name="tests.OverviewProjectTest"/>
             <class name="tests.TestRunsTest"/>
-<!--            <class name="tests.OverviewProjectTest"/>-->
+            <!--            <class name="tests.OverviewProjectTest"/>-->
         </classes>
     </test> <!-- Test -->
 
     <test name="test 3">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="tests.TestCaseTest"/>
             <class name="tests.TestCaseApiTest"/>
-<!--            <class name="tests.ProjectTest"/>-->
+            <class name="tests.ProjectTest"/>
+            <!--            <class name="tests.ProjectTest"/>-->
         </classes>
     </test> <!-- Test -->
 
