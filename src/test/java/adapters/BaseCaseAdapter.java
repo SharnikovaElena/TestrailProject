@@ -69,7 +69,7 @@ public class BaseCaseAdapter {
                         .header("authorization", "Basic dG1zZGlwbG9tQG1haWxpbmF0b3IuY29tOkxlbm9yNGlr")
                         .header("cache-control", "no-cache")
                         .header("content-type", "application/json")
-                        .header("postman-token", "b3b61d21-78d8-3e0a-af16-3e9c3e79d2ad")
+                        .header("postman-token", "edeb431e-452c-95fe-f0cb-88c266ebddd9")
                         .body(contentOfChanges)
                 .when()
                         .post("https://diplomtms.testrail.io/index.php?/api/v2/update_case/" + case_id)
