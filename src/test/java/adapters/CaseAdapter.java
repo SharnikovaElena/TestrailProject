@@ -21,9 +21,14 @@ public class CaseAdapter extends BaseCaseAdapter {
         return super.delete(statusCode, case_id);
     }
 
-    public ResponseStatusPositive postUpdateTestCaseByCorrectCode(TestCaseForApi contentOfChanges, int statusCode, int case_id) {
-        String response = super.update(gson.toJson(contentOfChanges, TestCaseForApi.class), statusCode, case_id);
+    public ResponseStatusPositive postUpdateTestCasePositive(TestCaseForApi testCaseForApi, int statusCode, int case_id) {
+        String response = super.update(gson.toJson(testCaseForApi, TestCaseForApi.class), statusCode, case_id);
         return gson.fromJson(response, ResponseStatusPositive.class);
+    }
+
+    public ResponseStatusNegative postUpdateTestCaseNegative(TestCaseForApi testCaseForApi, int statusCode, int case_id) {
+        String response = super.update(gson.toJson(testCaseForApi, TestCaseForApi.class), statusCode, case_id);
+        return gson.fromJson(response, ResponseStatusNegative.class);
     }
 
 
