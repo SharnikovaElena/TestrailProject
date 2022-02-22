@@ -65,7 +65,7 @@ public class TestCasesPage extends BasePage {
     @Step("Find out the number of test cases in an open project")
     public String getNumberOfTestCasesInTheProject() {
         log.info("Determine the number of test cases on the project");
-        return driver.findElement(By.id("sectionCount-3")).getText();
+        return driver.findElement(By.xpath("//span[@class='text-secondary section-count']")).getText();
     }
 
     @Step("Delete one Test Case in the project by its name")
@@ -77,7 +77,7 @@ public class TestCasesPage extends BasePage {
         log.info("Click on the 'Mark as Deleted' button in the Confirmation Modal");
         driver.findElement(By.xpath(testCaseDeletionConfirmation)).click();
 
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, 2);
         wait.until(ExpectedConditions.not(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//a/span[@class='title'][contains(text(), 'Training Test Case')]"))));
 
         return new TestCasesPage(driver);

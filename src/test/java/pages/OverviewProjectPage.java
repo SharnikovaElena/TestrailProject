@@ -47,8 +47,8 @@ public class OverviewProjectPage extends BasePage {
 
 
     @Step("Click on the Add Test Run link and go to the page TestRunsPage")
-    public TestRunsPage addTestRun() {
+    public TestRunDetailsPage addTestRun() {
         driver.findElement(ADD_TEST_RUN_LINK).click();
-        return new TestRunsPage(driver);
+        return new TestRunDetailsPage(driver);
     }
 }

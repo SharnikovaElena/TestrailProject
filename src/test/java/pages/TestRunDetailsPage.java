@@ -2,10 +2,13 @@ package pages;
 
 import com.github.javafaker.Faker;
 import elements.DropDownModal;
+import elements.InputModal;
+import elements.RadioButton;
 import elements.TextAreaModal;
 import io.qameta.allure.Step;
 import lombok.Data;
 import lombok.extern.log4j.Log4j2;
+import models.TestRun;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.AllureUtils;
@@ -42,11 +45,11 @@ public static final By BUTTON_CONFIRMING_ADD_RESULT = By.xpath("//button[@id='ad
         return clickSave();
     }
 
-    @Step("Click on the save test run button")
-    public TestRunDetailsPage clickSave() {
-        driver.findElement(SAVE_ADD_PROJECT_OR_TESTCASE_OR_TESTRUN).click();
-        return new TestRunDetailsPage(driver);
-    }
+//    @Step("Click on the save test run button")
+//    public TestRunDetailsPage clickSave() {
+//        driver.findElement(SAVE_ADD_PROJECT_OR_TESTCASE_OR_TESTRUN).click();
+//        return new TestRunDetailsPage(driver);
+//    }
 
     @Step("Adding the result of a Test Case run")
     public TestRunDetailsPage addTestCaseResult(String status) {
@@ -64,5 +67,22 @@ public static final By BUTTON_CONFIRMING_ADD_RESULT = By.xpath("//button[@id='ad
     @Step("Take the value of the latest status TestCase")
     public String getValueLatestStatusTestCase(){
         return driver.findElement(By.xpath("(//span[@class='status'])[1]")).getText();
+    }
+
+    @Step("Filling out the form for creating a new Test Run")
+    public TestRunDetailsPage createNewTestRun(TestRun testRun) {
+        new InputModal(driver, "name").write(testRun.getName());
+        new InputModal(driver, "refs").write(testRun.getReferences());
+        new DropDownModal(driver, "Milestone").selectOptionForTestRun(testRun.getMilestone());
+        new DropDownModal(driver, "Assign To").selectOptionForTestRun(testRun.getAssignTo());
+        new TextAreaModal(driver, "Description").write(testRun.getDescription());
+        new RadioButton(driver, "Include all test cases").selectRadioButton();
+        return clickSave();
+    }
+
+    @Step("Click on the save test run button")
+    public TestRunDetailsPage clickSave() {
+        driver.findElement(SAVE_ADD_PROJECT_OR_TESTCASE_OR_TESTRUN).click();
+        return new TestRunDetailsPage(driver);
     }
 }

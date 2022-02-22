@@ -8,12 +8,12 @@ public class CaseAdapter extends BaseCaseAdapter {
 
 
     public ResponseStatusNegative postCreateTestCaseNegative(TestCaseForApi testCaseForApi, int statusCode) {
-        String response = super.post(gson.toJson(testCaseForApi, TestCaseForApi.class), statusCode, "add_case/3");
+        String response = super.post(gson.toJson(testCaseForApi, TestCaseForApi.class), statusCode, "add_case/556");
         return gson.fromJson(response, ResponseStatusNegative.class);
     }
 
     public ResponseStatusPositive postCreateTestCasePositive(TestCaseForApi testCaseForApi, int statusCode) {
-        String response = super.post(gson.toJson(testCaseForApi, TestCaseForApi.class), statusCode, "add_case/3");
+        String response = super.post(gson.toJson(testCaseForApi, TestCaseForApi.class), statusCode, "add_case/556");
         return gson.fromJson(response, ResponseStatusPositive.class);
     }
 

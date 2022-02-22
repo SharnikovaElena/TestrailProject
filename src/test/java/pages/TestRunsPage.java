@@ -32,22 +32,7 @@ public class TestRunsPage extends BasePage {
         return driver.findElement(TITLE_THE_OPENED_PAGE).getText();
     }
 
-    @Step("Filling out the form for creating a new Test Run")
-    public TestRunDetailsPage createNewTestRun(TestRun testRun) {
-        new InputModal(driver, "name").write(testRun.getName());
-        new InputModal(driver, "refs").write(testRun.getReferences());
-        new DropDownModal(driver, "Milestone").selectOptionForTestRun(testRun.getMilestone());
-        new DropDownModal(driver, "Assign To").selectOptionForTestRun(testRun.getAssignTo());
-        new TextAreaModal(driver, "Description").write(testRun.getDescription());
-        new RadioButton(driver, "Include all test cases").selectRadioButton();
-        return clickSave();
-    }
 
-    @Step("Click on the save test run button")
-    public TestRunDetailsPage clickSave() {
-        driver.findElement(SAVE_ADD_PROJECT_OR_TESTCASE_OR_TESTRUN).click();
-        return new TestRunDetailsPage(driver);
-    }
 
 
     @Step("Open the first TestRun")

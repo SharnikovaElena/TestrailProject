@@ -1,7 +1,5 @@
 package tests;
-
 import adapters.CaseAdapter;
-
 import com.github.javafaker.Faker;
 import lombok.extern.log4j.Log4j2;
 import models.*;
@@ -18,9 +16,11 @@ public class TestCaseApiTest {
 
     int case_id;
     String caseTitle;
+    int section_id;
+    int template_id;
+    int type_id;
 
-
-    @BeforeClass (description = "Creating a new test case.")
+    @BeforeClass(description = "Creating a new test case.")
     public void createNewTestCase() {
         log.info("Create new Test Case");
         TestCaseForApi testCaseForApi = TestCaseForApi.builder().title(faker.artist().name())
@@ -34,7 +34,11 @@ public class TestCaseApiTest {
         ResponseStatusPositive actual = new CaseAdapter().postCreateTestCasePositive(testCaseForApi, 200);
         case_id = actual.getId();
         caseTitle = actual.getTitle();
+        section_id = actual.getSection_id();
+        template_id = actual.getTemplate_id();
+        type_id = actual.getType_id();
     }
+
 
     @Test(description = "Negative test for Create new TestCase. 'Title' field is required")
     public void createTestCaseNegativeTest() {
@@ -52,7 +56,6 @@ public class TestCaseApiTest {
                 .error("Field :title is a required field.")
                 .build();
         assertEquals(actual, expected);
-
     }
 
 
@@ -118,24 +121,68 @@ public class TestCaseApiTest {
         log.info("Completion test  getTestCasePositiveTest");
     }
 
-//    @Test
-//    public void updateTestCasePositiveTest(int priority_id, String estimate) {
-//
-//        log.info("Run test  getTestCasePositiveTest");
-//        TestCaseForApi contentOfChanges = TestCaseForApi.builder()
-//                .priority_id(priority_id)
-//                .estimate(estimate)
-//                .build();
-//        ResponseStatusPositive actualUpdateCaseResponse = new CaseAdapter().postUpdateTestCaseByCorrectCode(contentOfChanges,200,case_id);
-//        ResponseStatusPositive expectedUpdateCaseResponse = ResponseStatusPositive.builder()
-//                .created_by(1)
-//                .title(caseTitle)
-//                .priority_id(3)
-//                .estimate("4h")
-//                .build();
-//
-//        Assert.assertEquals(actualUpdateCaseResponse.getTitle(),expectedUpdateCaseResponse.getTitle(), "Test Case names do not match");
-//        Assert.assertEquals(actualUpdateCaseResponse.getPriority_id(), expectedUpdateCaseResponse.getPriority_id());
-//        Assert.assertEquals(actualUpdateCaseResponse.getEstimate(), expectedUpdateCaseResponse.getEstimate());
-//    }
+
+    @Test(description = "Negative test for Get TestCase. Using an invalid case_id", priority = 1)
+    public void getTestCaseNegativeTest() {
+
+        log.info("Run test  getTestCaseNegativeTest");
+        log.info("We send a request via the API to get a Test Case using a non-existent case_id.");
+
+        ResponseStatusNegative actualGetCaseResponse = new CaseAdapter().getTestCaseNegative(400, 0);
+        ResponseStatusNegative expectedGetCaseResponse = ResponseStatusNegative.builder()
+                .error("Field :case_id is not a valid test case.")
+                .build();
+        assertEquals(actualGetCaseResponse, expectedGetCaseResponse);
+        log.info("Completion test  getTestCaseNegativeTest");
+    }
+
+
+    @Test(description = "Checking to save changes to an existing test case. Changing the values of priority_id and estimate")
+    public void updateTestCasePositiveTest() {
+        log.info("Run test updateTestCasePositiveTest");
+
+        TestCaseForApi testCaseForApi = TestCaseForApi.builder()
+                .id(case_id)
+                .type_id(type_id)
+                .section_id(section_id)
+                .template_id(template_id)
+                .priority_id(3)
+                .estimate("5h")
+                .build();
+        ResponseStatusPositive actualUpdateCaseResponse = new CaseAdapter().postUpdateTestCasePositive(testCaseForApi, 200, case_id);
+        ResponseStatusPositive expectedUpdateCaseResponse = ResponseStatusPositive.builder()
+                .title(caseTitle)
+                .section_id(section_id)
+                .type_id(type_id)
+                .template_id(template_id)
+                .priority_id(3)
+                .estimate("5h")
+                .build();
+
+        Assert.assertEquals(actualUpdateCaseResponse.getTitle(), expectedUpdateCaseResponse.getTitle(), "Test Case names do not match");
+        Assert.assertEquals(actualUpdateCaseResponse.getPriority_id(), expectedUpdateCaseResponse.getPriority_id());
+        Assert.assertEquals(actualUpdateCaseResponse.getEstimate(), expectedUpdateCaseResponse.getEstimate());
+
+        log.info("Completion test updateTestCasePositiveTest");
+    }
+
+
+    @Test(description = "Checking if changes are saved in an existing Test Case when using invalid data: type_id.")
+    public void updateTestCaseNegativeTest() {
+        log.info("Run test updateTestCaseNegativeTest");
+
+        TestCaseForApi testCaseForApi = TestCaseForApi.builder()
+                .id(case_id)
+                .type_id(13)
+                .section_id(section_id)
+                .template_id(template_id)
+                .build();
+        ResponseStatusNegative actualUpdateCaseResponse = new CaseAdapter().postUpdateTestCaseNegative(testCaseForApi, 400, case_id);
+        ResponseStatusNegative expectedUpdateCaseResponse = ResponseStatusNegative.builder()
+                .error("Field :type_id is not a valid case type.")
+                .build();
+
+        assertEquals(actualUpdateCaseResponse, expectedUpdateCaseResponse);
+        log.info("Completion test updateTestCaseNegativeTest");
+    }
 }
