@@ -62,6 +62,7 @@ public class TestRunDetailsPage extends BasePage {
 
     @Step("Take the value of the latest status TestCase")
     public String getValueLatestStatusTestCase() {
+        AllureUtils.takeScreenshot(driver);
         return driver.findElement(By.xpath("(//span[@class='status'])[1]")).getText();
     }
 
