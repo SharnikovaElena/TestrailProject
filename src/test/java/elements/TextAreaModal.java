@@ -16,6 +16,7 @@ String textAreaLocator = "//label[contains(., '%s')]/ancestor::div[@class='form-
         this.label = label;
     }
 
+
     public void write(String text) {
         log.info("Writing text into textarea with by the specified name");
         driver.findElement(By.xpath(String.format(textAreaLocator, this.label))).sendKeys(text);

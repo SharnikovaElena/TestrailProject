@@ -1,12 +1,6 @@
 package pages;
-
-import elements.DropDownModal;
-import elements.InputModal;
-import elements.RadioButton;
-import elements.TextAreaModal;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-import models.TestRun;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -31,8 +25,6 @@ public class TestRunsPage extends BasePage {
     public String getTitlePageValue() {
         return driver.findElement(TITLE_THE_OPENED_PAGE).getText();
     }
-
-
 
 
     @Step("Open the first TestRun")

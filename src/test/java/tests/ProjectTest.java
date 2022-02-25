@@ -1,13 +1,9 @@
 package tests;
-
 import com.github.javafaker.Faker;
 import lombok.extern.log4j.Log4j2;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.AdministrationPage;
 import pages.DashboardPage;
 import utils.AllureUtils;
 
@@ -76,8 +72,10 @@ public class ProjectTest extends BaseTest {
 
         log.info("Click on the name of the project on DashboardPage");
         dashboardPage.openProject("Graduation project");
+        AllureUtils.takeScreenshot(driver);
         log.info("Click on the Edit button and make changes to the project");
         overviewProjectPage.editProject(faker.backToTheFuture().character());
+        AllureUtils.takeScreenshot(driver);
         log.debug("Verify that changes to the project have been successfully saved");
         Assert.assertEquals(administrationPage.popUpResultMessage(), "Successfully updated the project.", "Failed to edit project");
         log.info("Completion editProjectTest");

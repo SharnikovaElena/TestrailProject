@@ -21,6 +21,7 @@ public class СonfirmationModalPage extends BasePage {
         return isExit(TITLE_CONFIRMATION);
     }
 
+
     @Step("Get the title of the page")
     public String getTitlePageValue() {
         return driver.findElement(TITLE_CONFIRMATION).getText();
@@ -30,7 +31,6 @@ public class СonfirmationModalPage extends BasePage {
         driver.findElement(DELETE_CHECKBOX).click();
         driver.findElement(OK_BUTTON).click();
     }
-
 }
 
 

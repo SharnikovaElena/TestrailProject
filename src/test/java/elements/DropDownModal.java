@@ -21,12 +21,13 @@ public class DropDownModal {
         this.label = label;
     }
 
+
     public void selectOptionForTestCase(String option) {
         log.info("Select option from the list by name when creating new Test Case");
         driver.findElement(By.xpath(String.format(dropdownLocator, this.label))).click();
         driver.findElement(By.xpath(String.format(optionLocator, option))).click();
-
     }
+
 
     public void selectOptionForTestRun(String option) {
         log.info("Select option from the list by name");

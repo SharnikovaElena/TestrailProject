@@ -16,7 +16,6 @@ public class DashboardPage extends BasePage {
     private static final By EXAMPLE_PROJECT_INPUT = By.xpath("//input[@id='addProjectName']");
     private static final By ADD_EXAMPLE_PROJECT_SUBMIT = By.xpath("//button[@id='addProjectSubmit']");
 
-    String selectProjectType = "/strong[text()='%s']/ancestor::label/input";
     String projectTitle = "//div[@class='table summary summary-auto']//a[text()='%s']";
 
 
@@ -52,6 +51,8 @@ public class DashboardPage extends BasePage {
         return new LoginPage(driver);
     }
 
+
+    @Step("Creating an Example Project on the DashboardPage")
     public DashboardPage addExampleProject(String projectName) {
         driver.findElement(ADD_EXAMPLE_PROJECT_BUTTON).click();
         driver.findElement(EXAMPLE_PROJECT_INPUT).sendKeys(projectName);
@@ -59,6 +60,7 @@ public class DashboardPage extends BasePage {
         return new DashboardPage(driver);
     }
 
+    @Step("Creating a New Project on the DashboardPage")
     public AdministrationPage addNewProject(String newProjectName, String announcement) {
         driver.findElement(ADD_PROJECT_BUTTON).click();
         driver.findElement(By.id("name")).sendKeys(newProjectName);
@@ -68,10 +70,10 @@ public class DashboardPage extends BasePage {
     }
 
 
+    @Step("Opening a Project from a DashboardPage")
     public OverviewProjectPage openProject(String projectName) {
         driver.findElement(By.xpath(String.format(projectTitle, projectName))).click();
         return new OverviewProjectPage(driver);
     }
-
 }
 

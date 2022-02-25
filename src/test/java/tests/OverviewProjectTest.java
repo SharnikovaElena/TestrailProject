@@ -1,5 +1,4 @@
 package tests;
-
 import com.github.javafaker.Faker;
 import lombok.extern.log4j.Log4j2;
 import org.testng.Assert;
