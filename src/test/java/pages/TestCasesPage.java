@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.AllureUtils;
 
 @Log4j2
 public class TestCasesPage extends BasePage {
@@ -62,6 +63,7 @@ public class TestCasesPage extends BasePage {
 
     @Step("Checking that the test case name does not exist on the TestCasesPage.")
     public boolean nameTestCaseNotExist(String nameTestCase) {
+        AllureUtils.takeScreenshot(driver);
         return driver.findElements(By.xpath(String.format(selectNameTestCase, nameTestCase))).isEmpty();
     }
 
@@ -81,9 +83,10 @@ public class TestCasesPage extends BasePage {
         driver.findElement(DELETE_TEST_CASE_BUTTON).click();
         log.info("Click on the 'Mark as Deleted' button in the Confirmation Modal");
         driver.findElement(By.xpath(testCaseDeletionConfirmation)).click();
+        AllureUtils.takeScreenshot(driver);
 
-        WebDriverWait wait = new WebDriverWait(driver, 2);
-        wait.until(ExpectedConditions.not(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//a/span[@class='title'][contains(text(), 'Training Test Case')]"))));
+//        WebDriverWait wait = new WebDriverWait(driver, 2);
+//        wait.until(ExpectedConditions.not(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//a/span[@class='title'][contains(text(), 'Training Test Case')]"))));
 
         return new TestCasesPage(driver);
     }
