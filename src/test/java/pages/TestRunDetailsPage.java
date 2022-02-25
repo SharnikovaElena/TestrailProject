@@ -6,7 +6,6 @@ import elements.InputModal;
 import elements.RadioButton;
 import elements.TextAreaModal;
 import io.qameta.allure.Step;
-import lombok.Data;
 import lombok.extern.log4j.Log4j2;
 import models.TestRun;
 import org.openqa.selenium.By;
@@ -20,7 +19,7 @@ public class TestRunDetailsPage extends BasePage {
     public static final By RERUN_BUTTON = By.xpath("//a/span[contains(text(), 'Rerun')]");
     public static final By BUTTON_OK = By.xpath("//div[contains(text(), 'Select Tests')]/ancestor::div//button[contains(text(), 'OK')]");
     public static final By BUTTON_ADD_RESULT = By.xpath("//a[@id='sidebar-tests-addresult']/span");
-public static final By BUTTON_CONFIRMING_ADD_RESULT = By.xpath("//button[@id='addResultSubmit']/span[contains(text(), 'Add Result')]");
+    public static final By BUTTON_CONFIRMING_ADD_RESULT = By.xpath("//button[@id='addResultSubmit']/span[contains(text(), 'Add Result')]");
 
     public TestRunDetailsPage(WebDriver driver) {
         super(driver);
@@ -30,6 +29,7 @@ public static final By BUTTON_CONFIRMING_ADD_RESULT = By.xpath("//button[@id='ad
     public boolean isPageOpen() throws InterruptedException {
         return isExit(TITLE_THE_OPENED_PAGE);
     }
+
 
     @Step("Get the title of the page")
     public String getTitlePageValue() {
@@ -45,11 +45,6 @@ public static final By BUTTON_CONFIRMING_ADD_RESULT = By.xpath("//button[@id='ad
         return clickSave();
     }
 
-//    @Step("Click on the save test run button")
-//    public TestRunDetailsPage clickSave() {
-//        driver.findElement(SAVE_ADD_PROJECT_OR_TESTCASE_OR_TESTRUN).click();
-//        return new TestRunDetailsPage(driver);
-//    }
 
     @Step("Adding the result of a Test Case run")
     public TestRunDetailsPage addTestCaseResult(String status) {
@@ -64,10 +59,12 @@ public static final By BUTTON_CONFIRMING_ADD_RESULT = By.xpath("//button[@id='ad
         return new TestRunDetailsPage(driver);
     }
 
+
     @Step("Take the value of the latest status TestCase")
-    public String getValueLatestStatusTestCase(){
+    public String getValueLatestStatusTestCase() {
         return driver.findElement(By.xpath("(//span[@class='status'])[1]")).getText();
     }
+
 
     @Step("Filling out the form for creating a new Test Run")
     public TestRunDetailsPage createNewTestRun(TestRun testRun) {
@@ -79,6 +76,7 @@ public static final By BUTTON_CONFIRMING_ADD_RESULT = By.xpath("//button[@id='ad
         new RadioButton(driver, "Include all test cases").selectRadioButton();
         return clickSave();
     }
+
 
     @Step("Click on the save test run button")
     public TestRunDetailsPage clickSave() {

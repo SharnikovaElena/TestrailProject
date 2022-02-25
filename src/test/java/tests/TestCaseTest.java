@@ -1,6 +1,4 @@
 package tests;
-
-import com.github.javafaker.Faker;
 import lombok.extern.log4j.Log4j2;
 import models.TestCase;
 import models.TestCaseFactory;
@@ -68,6 +66,7 @@ public class TestCaseTest extends BaseTest {
                 .addTestCases()
                 .createNewTestCase(testCase);
         AllureUtils.takeScreenshot(driver);
+
         Assert.assertEquals(administrationPage.popUpResultMessage(), "Successfully added the new test case. Add another", "Test case not created");
         Assert.assertEquals(testCaseDetailsPage.getContainedTextInTheField("Type"), "Type\n" + testCase.getType(), "Type does not match");
         Assert.assertEquals(testCaseDetailsPage.getContainedTextInTheField("Priority"), "Priority\n" + testCase.getPriority(), "Priority does not match");
@@ -116,6 +115,7 @@ public class TestCaseTest extends BaseTest {
                 .addTestCases()
                 .createNewTestCase(testCase);
 
+        AllureUtils.takeScreenshot(driver);
         log.info("Go to the test cases section");
         projectPage.selectingSectionOnTheProjectPage("Test Cases");
         testCasesPage.deleteAllTestsCases();

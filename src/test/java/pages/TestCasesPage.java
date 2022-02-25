@@ -29,10 +29,12 @@ public class TestCasesPage extends BasePage {
         return isExit(TITLE_THE_OPENED_PAGE);
     }
 
+
     @Step("Get the title of the page")
     public String getTitlePageValue() {
         return driver.findElement(TITLE_THE_OPENED_PAGE).getText();
     }
+
 
     @Step("Filling out the form for creating a new Test Case")
     public TestCaseDetailsPage createNewTestCase(TestCase testCase) {
@@ -48,8 +50,8 @@ public class TestCasesPage extends BasePage {
         new DropDownModal(driver, "Priority").selectOptionForTestCase(testCase.getPriority());
         new DropDownModal(driver, "Automation Type").selectOptionForTestCase(testCase.getAutomationType());
         return clickSave();
-
     }
+
 
     @Step("Click on the save test case button")
     public TestCaseDetailsPage clickSave() {
@@ -57,16 +59,19 @@ public class TestCasesPage extends BasePage {
         return new TestCaseDetailsPage(driver);
     }
 
+
     @Step("Checking that the test case name does not exist on the TestCasesPage.")
     public boolean nameTestCaseNotExist(String nameTestCase) {
         return driver.findElements(By.xpath(String.format(selectNameTestCase, nameTestCase))).isEmpty();
     }
+
 
     @Step("Find out the number of test cases in an open project")
     public String getNumberOfTestCasesInTheProject() {
         log.info("Determine the number of test cases on the project");
         return driver.findElement(By.xpath("//span[@class='text-secondary section-count']")).getText();
     }
+
 
     @Step("Delete one Test Case in the project by its name")
     public TestCasesPage deleteTestCase(String nameTestCase) {

@@ -37,6 +37,7 @@ public class TestRunsTest extends BaseTest {
         overviewProjectPage
                 .addTestCases()
                 .createNewTestCase(testCase);
+        AllureUtils.takeScreenshot(driver);
         projectPage.selectingSectionOnTheProjectPage("Overview");
         log.info("Create new TestRun");
         TestRun testRun = TestRunFactory.get();
