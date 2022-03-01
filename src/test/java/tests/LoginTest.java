@@ -13,7 +13,7 @@ public class LoginTest extends BaseTest {
 
     static Faker faker = new Faker();
 
-    @Test(description = "For Login use email:' ' and password:'Lenor4ik'")
+    @Test(description = "For Login use email:' ' and password:'Lenor4ik'", priority = 1)
     public void emailShouldBeRequiredTest() {
         log.info("Run test emailShouldBeRequired");
         loginPage.open().login("", userPassword);
@@ -24,7 +24,7 @@ public class LoginTest extends BaseTest {
     }
 
 
-    @Test(description = "For Login use email:'ev.sharnikova@gmail.com' and password:' '")
+    @Test(description = "For Login use email:'ev.sharnikova@gmail.com' and password:' '", priority = 2)
     public void passwordShouldBeRequiredTest() {
         log.info("Run test passwordShouldBeRequired");
         loginPage.open().login(userEmail, " ");
@@ -35,7 +35,7 @@ public class LoginTest extends BaseTest {
     }
 
 
-    @Test(description = "Authorization with invalid data. Email: '1234' and Password 'QWE12'")
+    @Test(description = "Authorization with invalid data. Email: '1234' and Password 'QWE12'", priority = 3)
     public void invalidLoginDataTest() {
         log.info("Run test invalidLoginData");
         loginPage.open().login(faker.internet().emailAddress(), faker.internet().password(2, 8));
@@ -46,7 +46,7 @@ public class LoginTest extends BaseTest {
     }
 
 
-    @Test(description = "Checking user authorization on the LoginPage using valid data in the fields 'Email' and 'Password'")
+    @Test(description = "Checking user authorization on the LoginPage using valid data in the fields 'Email' and 'Password'", priority = 4)
     @Step("Fill in the 'Email' and 'Password' fields with valid data")
     public void loginAccountTest() throws InterruptedException {
         log.info("Run login test using correct data");

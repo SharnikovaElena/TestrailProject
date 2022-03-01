@@ -61,7 +61,7 @@ public class TestCasesPage extends BasePage {
     }
 
 
-    @Step("Checking that the test case name does not exist on the TestCasesPage.")
+    @Step("Checking that the test case name doesn't exist on the TestCasesPage.")
     public boolean nameTestCaseNotExist(String nameTestCase) {
         AllureUtils.takeScreenshot(driver);
         return driver.findElements(By.xpath(String.format(selectNameTestCase, nameTestCase))).isEmpty();
@@ -78,15 +78,16 @@ public class TestCasesPage extends BasePage {
     @Step("Delete one Test Case in the project by its name")
     public TestCasesPage deleteTestCase(String nameTestCase) {
         log.info("Check the checkbox named Test Case to be deleted");
-        driver.findElement(By.xpath(String.format(checkboxForProjectSelection, nameTestCase))).click();
+//        driver.findElement(By.xpath(String.format(checkboxForProjectSelection, nameTestCase))).isSelected();
+        driver.findElement(By.xpath("//span[contains(text(), 'Training Test Case')]/ancestor::tr//input")).click();
         log.info("Click on the 'Delete' button");
         driver.findElement(DELETE_TEST_CASE_BUTTON).click();
         log.info("Click on the 'Mark as Deleted' button in the Confirmation Modal");
         driver.findElement(By.xpath(testCaseDeletionConfirmation)).click();
         AllureUtils.takeScreenshot(driver);
 
-//        WebDriverWait wait = new WebDriverWait(driver, 2);
-//        wait.until(ExpectedConditions.not(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//a/span[@class='title'][contains(text(), 'Training Test Case')]"))));
+        WebDriverWait wait = new WebDriverWait(driver, 2);
+        wait.until(ExpectedConditions.not(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//a/span[@class='title'][contains(text(), 'Training Test Case')]"))));
 
         return new TestCasesPage(driver);
     }

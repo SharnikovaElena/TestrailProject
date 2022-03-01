@@ -40,7 +40,7 @@ public class TestCaseApiTest {
     }
 
 
-    @Test(description = "Negative test for Create new TestCase. 'Title' field is required")
+    @Test(description = "Negative test for Create new TestCase. 'Title' field is required", priority = 1)
     public void createTestCaseNegativeTest() {
         TestCaseForApi testCaseForApi = TestCaseForApi.builder()
                 .section_id(3)
@@ -59,7 +59,7 @@ public class TestCaseApiTest {
     }
 
 
-    @Test(description = "Positive test for Create new TestCase and Delete it")
+    @Test(description = "Positive test for Create new TestCase and Delete it", priority = 2)
     public void createAndDeleteTestCasePositiveTest() {
 
         log.info("Run test createAndDeleteTestCasePositiveTest");
@@ -100,7 +100,7 @@ public class TestCaseApiTest {
     }
 
 
-    @Test(description = "Positive test for Get TestCase", priority = 1)
+    @Test(description = "Positive test for Get TestCase", priority = 3)
     public void getTestCasePositiveTest() {
 
         log.info("Run test  getTestCasePositiveTest");
@@ -122,7 +122,7 @@ public class TestCaseApiTest {
     }
 
 
-    @Test(description = "Negative test for Get TestCase. Using an invalid case_id", priority = 1)
+    @Test(description = "Negative test for Get TestCase. Using an invalid case_id", priority = 4)
     public void getTestCaseNegativeTest() {
 
         log.info("Run test  getTestCaseNegativeTest");
@@ -137,7 +137,7 @@ public class TestCaseApiTest {
     }
 
 
-    @Test(description = "Checking to save changes to an existing test case. Changing the values of priority_id and estimate")
+    @Test(description = "Checking to save changes to an existing test case. Changing the values of priority_id and estimate", priority = 5)
     public void updateTestCasePositiveTest() {
         log.info("Run test updateTestCasePositiveTest");
 
@@ -167,7 +167,7 @@ public class TestCaseApiTest {
     }
 
 
-    @Test(description = "Checking if changes are saved in an existing Test Case when using invalid data: type_id.")
+    @Test(description = "Checking if changes are saved in an existing Test Case when using invalid data: type_id.", priority = 6)
     public void updateTestCaseNegativeTest() {
         log.info("Run test updateTestCaseNegativeTest");
 

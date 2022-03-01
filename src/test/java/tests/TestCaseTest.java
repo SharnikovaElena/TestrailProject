@@ -40,6 +40,7 @@ public class TestCaseTest extends BaseTest {
         log.info("Completion test createNewTestCase");
     }
 
+
     @Test(description = "Create a test case named 'Training Test Case'", priority = 2)
     public void createTrainingTestCase() {
         log.info("Run createTrainingTestCase. Open the DashboardPage");
@@ -78,8 +79,8 @@ public class TestCaseTest extends BaseTest {
         Assert.assertEquals(testCaseDetailsPage.getContainedTextInTheExpectedResultField(), testCase.getExpectedResult(), "Expected Result does not match");
         Assert.assertEquals(testCaseDetailsPage.getContainedTextInTheStepsField(), testCase.getSteps(), "Steps does not match");
         log.info("Completion test createTrainingTestCase");
-
     }
+
 
     @Test(description = "Deleting a test case named 'Training Test Case'", priority = 3)
     public void deleteTestCaseByName() {
@@ -100,6 +101,7 @@ public class TestCaseTest extends BaseTest {
         Assert.assertTrue(testCasesPage.nameTestCaseNotExist("Training Test Case"), "Unable to remove test case from page TestCasesPage");
         log.info("Completion test deleteTestCaseByName");
     }
+
 
     @Test(description = "Deleting all test cases in a project", priority = 4)
     public void deleteAllTestsCases() {
