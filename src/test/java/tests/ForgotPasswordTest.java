@@ -11,7 +11,7 @@ public class ForgotPasswordTest extends BaseTest {
 
     static Faker faker = new Faker();
 
-    @Test(description = "Checking the operation of the system by resetting the password in case the user has forgotten his password")
+    @Test(description = "Checking the operation of the system by resetting the password in case the user has forgotten his password", priority = 1)
     public void forgotPasswordTest() throws InterruptedException {
         log.info("Run test forgotPassword");
         forgotPasswordPage
@@ -25,7 +25,7 @@ public class ForgotPasswordTest extends BaseTest {
     }
 
 
-    @Test(description = "Checking the system operation by resetting the password in case the user forgot his password and entered an incorrect 'Email'")
+    @Test(description = "Checking the system operation by resetting the password in case the user forgot his password and entered an incorrect 'Email'", priority = 2)
     public void forgotPasswordInvalidEmailTest() throws InterruptedException {
         log.info("Run test forgotPasswordInvalidEmail");
         forgotPasswordPage
@@ -38,7 +38,7 @@ public class ForgotPasswordTest extends BaseTest {
         log.info("Completion test forgotPassword");
     }
 
-    @Test(description = "Checking the operation of the system by resetting the password in case the user forgot his password and left the 'Email' field empty")
+    @Test(description = "Checking the operation of the system by resetting the password in case the user forgot his password and left the 'Email' field empty", priority = 3)
     public void forgotPasswordEmailShouldBeRequiredTest() throws InterruptedException {
         log.info("Run test forgotPasswordEmailShouldBeRequired");
         forgotPasswordPage
@@ -52,7 +52,7 @@ public class ForgotPasswordTest extends BaseTest {
     }
 
 
-    @Test(description = "Checking if ForgotPasswordPage closes when 'Cancel' button is clicked")
+    @Test(description = "Checking if ForgotPasswordPage closes when 'Cancel' button is clicked", priority = 4)
     public void resetPasswordCancelTest() throws InterruptedException {
         log.info("Run test resetPasswordCancel");
         boolean isLoginPageOpened = forgotPasswordPage

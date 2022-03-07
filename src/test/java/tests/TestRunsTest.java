@@ -87,7 +87,7 @@ public class TestRunsTest extends BaseTest {
     }
 
 
-    @Test(description = "TestRun Uninstall Check", priority = 3)
+    @Test(description = "TestRun Uninstall Check", priority = 4)
     public void deleteAllRunTest() {
         log.info("Run deleteAllRunTest. Open the DashboardPage");
         log.info("Start BeforeMethod: login to account, open the DashboardPage");

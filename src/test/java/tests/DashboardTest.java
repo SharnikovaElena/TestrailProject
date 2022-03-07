@@ -24,7 +24,7 @@ public class DashboardTest extends BaseTest {
     }
 
 
-    @Test(description = "Сhecking the transition to the MySettingsPage")
+    @Test(description = "Сhecking the transition to the MySettingsPage", priority = 1)
     public void selectMenuUserMySettingsTest() throws InterruptedException {
         log.info("Run test checkingTransitionToMySettingsPage");
         log.info("Start BeforeMethod: login to account, open the DashboardPage");
@@ -38,7 +38,7 @@ public class DashboardTest extends BaseTest {
     }
 
 
-    @Test(description = "Log out of the account")
+    @Test(description = "Log out of the account", priority = 2)
     public void selectMenuUserLogoutTest() throws InterruptedException {
         log.info("Run test checkingNavigationUserLogout");
         log.info("Start BeforeMethod: login to account, open the DashboardPage");
